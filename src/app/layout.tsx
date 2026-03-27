@@ -112,20 +112,20 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-background text-text-main antialiased flex flex-col min-h-screen`}>
         
-        {/* Analytics Script placeholder */}
+        {/* 👇 GOOGLE ADS TRACKING TAG (Smart Next.js Integration) 👇 */}
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXXXX`}
+          src={`https://www.googletagmanager.com/gtag/js?id=AW-18044724364`}
         />
         <Script
-          id="google-analytics"
+          id="google-ads-tag"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-XXXXXXXXXX', {
+              gtag('config', 'AW-18044724364', {
                 page_path: window.location.pathname,
               });
             `,
