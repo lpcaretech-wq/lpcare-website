@@ -1,26 +1,74 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ULTRA PREMIUM LUXURY THEME (No Blue) 
+   Pearl Beige + Pure White + Obsidian Black + Champagne Gold
+*/
+@theme {
+  /* Background: Pearl/Warm Beige - Gives an expensive studio vibe */
+  --color-background: #F9F8F6; 
+  
+  /* Primary: Pure White for clean, sharp cards and navbar */
+  --color-primary: #FFFFFF;    
+  
+  /* Secondary: Obsidian Black for bold, striking buttons and headings */
+  --color-secondary: #0A0A0A;  
+  
+  /* Accent: Champagne Gold - Adds the ultimate luxury touch without being flashy */
+  --color-accent: #C5A059;     
+  
+  /* Text: Deep Charcoal Black for crisp readability */
+  --color-text-main: #1C1C1E;  
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Smooth selection color when user highlights text */
+  ::selection {
+    background-color: rgba(197, 160, 89, 0.2); /* Soft Champagne Gold selection */
+    color: var(--color-secondary);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Base Scrollbar Styling for Premium Minimalist Theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D1D6; /* Clean gray scrollbar */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent); /* Turns Champagne Gold on hover */
+}
+
+@layer utilities {
+  /* Ultra-premium soft shadow for cards */
+  .drop-shadow-premium {
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.04));
+  }
+}
+
+/* --- CUSTOM ANIMATIONS --- */
+/* The hardware scan animation from your HeroSection */
+@keyframes scan {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(170px); opacity: 0; }
+}
+
+/* Pulse animation for small dots */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
