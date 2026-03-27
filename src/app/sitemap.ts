@@ -13,6 +13,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1, // Home page ki priority sabse high (1.0) hoti hai
     },
     {
+      url: `${baseUrl}/enterprise-support`, // 🚀 AAPKA MAIN B2B PAGE 🚀
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9, // Isey high priority rakha hai
+    },
+    {
       url: `${baseUrl}/services`, // Services Page
       lastModified: new Date(),
       changeFrequency: 'weekly',

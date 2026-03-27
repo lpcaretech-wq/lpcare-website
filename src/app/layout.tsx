@@ -20,6 +20,13 @@ export const metadata: Metadata = {
     template: "%s | LPCARE.TECH"
   },
   description: "Delhi NCR's most trusted independent hardware diagnostic and micro-soldering lab. We restore dead motherboards and shattered displays with strict data privacy in Noida.",
+  
+  // 👇 GOOGLE SEARCH CONSOLE VERIFICATION ADDED HERE 👇
+  verification: {
+    google: 'e8unYwT9yirxTZHtKxDho_qtIioMu5mXXVgjLq3CN1w',
+  },
+  // 👆 👆 👆
+
   keywords: [
     "Laptop Repair Noida",
     "MacBook Motherboard Repair Delhi",
