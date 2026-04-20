@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 
 export default function ServiceCard({ title, description, sysCode, icon, delay = 0, isPremium = false }) {
   return (
-    <motion.div
+    // Changed to motion.article for semantic HTML (improves SEO crawling for services)
+    <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -18,7 +19,7 @@ export default function ServiceCard({ title, description, sysCode, icon, delay =
       <div className="text-[10px] font-bold text-text-main/40 uppercase tracking-widest mb-6 flex justify-between items-center">
         <span>{sysCode}</span>
         {isPremium && (
-           <span className="flex h-2 w-2 relative">
+           <span className="flex h-2 w-2 relative" aria-label="Premium Service Indicator">
              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
              <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
            </span>
@@ -26,7 +27,7 @@ export default function ServiceCard({ title, description, sysCode, icon, delay =
       </div>
 
       {/* Icon */}
-      <div className="w-14 h-14 rounded-lg bg-background border border-secondary/10 flex items-center justify-center mb-6 text-secondary transition-colors duration-300 group-hover:bg-secondary/5 group-hover:border-secondary/30">
+      <div className="w-14 h-14 rounded-lg bg-background border border-secondary/10 flex items-center justify-center mb-6 text-secondary transition-colors duration-300 group-hover:bg-secondary/5 group-hover:border-secondary/30" aria-hidden="true">
         {icon}
       </div>
 
@@ -36,6 +37,6 @@ export default function ServiceCard({ title, description, sysCode, icon, delay =
         {description}
       </p>
 
-    </motion.div>
+    </motion.article>
   );
 }

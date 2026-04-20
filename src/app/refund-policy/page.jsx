@@ -1,74 +1,72 @@
 // src/app/refund-policy/page.jsx
-"use client";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
+export const metadata = {
+  title: "Refund Policy | LPCARE.TECH",
+  description: "Read the refund and warranty policy for LPCARE.TECH's physical hardware repair services and component replacements.",
+};
 
 export default function RefundPolicy() {
-  const currentDate = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
-
   return (
-    <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      
-      {/* Premium Header Glow */}
-      <div className="absolute top-0 left-0 w-[600px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
-
-      <div className="max-w-4xl mx-auto relative z-10">
+    <div className="min-h-screen bg-background text-text-main py-24 px-6 relative selection:bg-secondary/10 selection:text-secondary">
+      <div className="max-w-4xl mx-auto bg-primary border border-secondary/10 p-8 md:p-14 rounded-3xl shadow-sm">
         
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 bg-primary border border-secondary/10 px-4 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-            Legal Information
+        <div className="mb-12 border-b border-secondary/10 pb-8 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase mb-4 shadow-sm">
+            Legal Compliance
           </div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-text-main uppercase mb-4">
-            Refund & <span className="text-accent">Cancellation</span>
-          </h1>
-          <p className="text-sm font-medium text-text-main/60 uppercase tracking-widest">
-            Last Updated: {currentDate}
-          </p>
-        </motion.div>
+          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Refund <span className="text-secondary">Policy</span></h1>
+          <p className="text-text-main/60 text-sm font-medium">Last Updated: April 2026</p>
+        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="bg-primary rounded-3xl shadow-premium border border-secondary/5 p-8 md:p-14 text-text-main/80 space-y-10"
-        >
+        <div className="space-y-10 text-sm leading-relaxed text-text-main/80">
           
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">1. Diagnostic Fees</h2>
-            <p className="leading-relaxed text-sm">
-              In cases where a physical diagnostic is performed, the diagnostic fee (if applicable and communicated beforehand) is non-refundable, regardless of whether you choose to proceed with the actual repair or not. This covers our technicians' time and lab resources.
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">1. General Policy Overview</h2>
+            <p>
+              At LPCARE.TECH, we provide physical hardware diagnostic and micro-soldering services. Due to the labor-intensive nature of chip-level repairs, labor charges are strictly non-refundable once a successful physical repair has been executed and the device is handed back to the customer.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">2. Repair Cancellation</h2>
-            <p className="leading-relaxed text-sm">
-              You may cancel a repair request at any time before the actual repair process begins. If any custom parts were specifically ordered for your device prior to cancellation, a restocking fee may apply. Once a successful repair is completed, the service cost cannot be cancelled or refunded.
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">2. "No Fix, No Fee" Condition</h2>
+            <p>
+              If you bring your device for a hardware issue and our laboratory determines that the physical logic board is beyond economical repair, or if our micro-soldering attempt is unsuccessful, you will not be charged the primary repair labor fee. Any pre-agreed minimal diagnostic fee or shipping costs, however, remain non-refundable.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">3. Refund Policy on Repairs</h2>
-            <ul className="list-disc pl-5 space-y-3 text-sm leading-relaxed">
-              <li><strong>Unsuccessful Repairs:</strong> If we are unable to repair your device (e.g., severe motherboard damage beyond economical repair), you will not be charged for the repair service.</li>
-              <li><strong>Post-Repair Issues:</strong> We provide a limited warranty on specific replaced parts (duration provided on your invoice). If the installed part fails within this warranty period due to manufacturing defects, we will replace it free of charge. Refunds are not issued for successful repairs once the device leaves our premises.</li>
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">3. Physical Parts Warranty & Returns</h2>
+            <p className="mb-3">For physical components replaced by our laboratory (e.g., display panels, batteries, keyboards):</p>
+            <ul className="list-disc pl-6 space-y-2 text-text-main/70">
+              <li>A limited replacement warranty is provided, the duration of which is specified on your invoice.</li>
+              <li>If the specific replaced part fails due to a manufacturing defect within the warranty period, we will physically replace it at no additional cost.</li>
+              <li><strong>No Cash Refunds:</strong> We do not offer cash refunds for physical parts. Defective parts will be replaced.</li>
+              <li>The warranty is immediately voided if the device suffers subsequent physical damage, liquid spills, or tampering by another party.</li>
             </ul>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">4. Processing Refunds</h2>
-            <p className="leading-relaxed text-sm">
-              If an eligible refund is approved (e.g., advance payment for a part that went out of stock), it will be processed to the original method of payment within 5-7 business days.
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">4. Non-Refundable Services</h2>
+            <p>
+              We do not provide software technical support. Any issues related to operating system crashes, software bugs, lost passwords, or viruses occurring after a successful hardware repair are entirely unrelated to our services and do not qualify for a refund of the hardware repair costs.
             </p>
           </section>
 
-        </motion.div>
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">5. Claiming a Warranty Service</h2>
+            <p>
+              To claim a warranty replacement for a defective part, you must bring the device back to our physical laboratory in Noida along with the original printed or digital invoice. Remote claims are not accepted.
+            </p>
+          </section>
+
+        </div>
+        
+        <div className="mt-16 pt-8 border-t border-secondary/10 text-center">
+          <Link href="/" className="inline-block text-xs font-bold text-secondary hover:text-text-main uppercase tracking-widest transition-colors">
+            &larr; Return to Homepage
+          </Link>
+        </div>
       </div>
     </div>
   );

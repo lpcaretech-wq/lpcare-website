@@ -3,30 +3,25 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'LPCARE.TECH | Premium Hardware Repair',
+    name: 'LPCARE.TECH | Hardware Repair Lab',
     short_name: 'LPCARE',
-    description: 'Delhi NCR\'s premium independent hardware diagnostic and micro-soldering lab. We restore dead motherboards and shattered displays.',
+    description: 'Delhi NCR\'s premium independent hardware diagnostic and micro-soldering laboratory.',
     start_url: '/',
-    display: 'standalone', // Ye browser ka URL bar hata dega, taaki ye real App jaisa lage
-    background_color: '#F9F8F6', // Aapka Pearl Beige theme color
-    theme_color: '#0A0A0A',      // Aapka Obsidian Black theme color
+    display: 'standalone', // Makes the website look like a native app without browser UI
+    background_color: '#0A0A0B', // Matches your obsidian black background
+    theme_color: '#C5A059', // Matches your secondary gold/accent color
     icons: [
       {
-        src: '/favicon.ico',
-        sizes: 'any',
-        type: 'image/x-icon',
-      },
-      {
-        src: '/logo/lpcaretech.png', // Aapki public directory ka logo
+        src: '/logo/lpcaretechicon.png', // Assuming this is your square app icon
         sizes: '192x192',
         type: 'image/png',
-        purpose: 'maskable'
+        purpose: 'maskable',
       },
       {
-        src: '/logo/lpcaretech.png',
+        src: '/logo/lpcaretechicon.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'maskable'
+        purpose: 'any',
       },
     ],
   };

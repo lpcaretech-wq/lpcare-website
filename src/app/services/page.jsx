@@ -2,38 +2,94 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Hardware Repair Services | LPCARE.Tech',
+  title: 'Hardware Repair Services in Noida | LPCARE.TECH',
   description: 'Independent physical laptop hardware repair in Noida. Screen, battery, keyboard, and motherboard micro-soldering for all major laptops in Delhi NCR.',
 };
 
 export default function ServicesPage() {
+  // SEO Schema specifically for individual services offered in Noida
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "position": 1,
+        "name": "Physical Display Replacement",
+        "provider": {
+          "@type": "ComputerStore",
+          "name": "LPCARE.TECH"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Noida"
+        },
+        "description": "Damaged display panels physically replaced with high-quality OEM-equivalent parts in Noida."
+      },
+      {
+        "@type": "Service",
+        "position": 2,
+        "name": "PCB Micro-Soldering",
+        "provider": {
+          "@type": "ComputerStore",
+          "name": "LPCARE.TECH"
+        },
+        "areaServed": {
+          "@type": "State",
+          "name": "Delhi NCR"
+        },
+        "description": "Liquid damage physical cleaning, burnt IC replacement, and precision soldering for motherboards."
+      },
+      {
+        "@type": "Service",
+        "position": 3,
+        "name": "Power & Peripherals Repair",
+        "provider": {
+          "@type": "ComputerStore",
+          "name": "LPCARE.TECH"
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Noida"
+        },
+        "description": "Swollen battery extraction, broken charging port replacements, and new laptop keyboards installation."
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background text-text-main py-20 px-6 relative overflow-hidden selection:bg-secondary/10 selection:text-secondary">
       
-      {/* Soft Light Theme Ambient Glow (No Grid) */}
+      {/* Injecting Local Service SEO Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
+
+      {/* Soft Light Theme Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-secondary/5 blur-[120px] z-0 pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Page Header */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 border border-secondary/20 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase mb-6">
+          <div className="inline-flex items-center gap-2 border border-secondary/20 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
             <span className="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
-            Professional Hardware Services
+            Professional Hardware Services in Noida
           </div>
           <h1 className="text-4xl md:text-6xl font-black mb-6 uppercase tracking-tighter">
             EXPERT <span className="text-secondary">HARDWARE</span> REPAIR
           </h1>
           <p className="text-text-main/70 text-lg max-w-3xl mx-auto font-light tracking-wide">
-            We provide fast, reliable, and component-level physical repairs. No remote software support, just pure, hands-on hardware fixes in Delhi NCR.
+            We provide fast, reliable, and component-level physical repairs. No remote software support, just pure, hands-on hardware fixes at our lab in Delhi NCR.
           </p>
         </div>
 
         {/* Detailed Hardware Services List */}
         <div className="space-y-8 mb-24">
           
-          {/* Service Item 1 */}
-          <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 bg-primary rounded-xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/30 transition-all duration-500 shadow-sm hover:shadow-md relative overflow-hidden">
+          {/* Service Item 1: Display Replacement */}
+          <article className="group flex flex-col md:flex-row items-start md:items-center gap-8 bg-primary rounded-xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/30 transition-all duration-500 shadow-sm hover:shadow-md relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
             
             <div className="w-20 h-20 shrink-0 bg-background border border-secondary/20 rounded-lg flex items-center justify-center group-hover:border-secondary/50 transition-colors relative">
@@ -42,12 +98,12 @@ export default function ServicesPage() {
             </div>
             <div>
               <h2 className="text-2xl font-black mb-3 uppercase tracking-wide text-text-main group-hover:text-secondary transition-colors">Physical Display Replacement</h2>
-              <p className="text-text-main/70 font-light leading-relaxed">Dead pixels, physically cracked screens, bleeding LCDs, or broken hinges. We replace damaged display panels with high-quality OEM-equivalent physical parts.</p>
+              <p className="text-text-main/70 font-light leading-relaxed">Dead pixels, physically cracked screens, bleeding LCD panels, or broken hinges. We replace damaged display components with high-quality OEM-equivalent physical parts in our Noida facility.</p>
             </div>
-          </div>
+          </article>
 
-          {/* Service Item 2 */}
-          <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 bg-primary rounded-xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/30 transition-all duration-500 shadow-sm hover:shadow-md relative overflow-hidden">
+          {/* Service Item 2: Micro-Soldering */}
+          <article className="group flex flex-col md:flex-row items-start md:items-center gap-8 bg-primary rounded-xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/30 transition-all duration-500 shadow-sm hover:shadow-md relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top delay-75"></div>
 
             <div className="w-20 h-20 shrink-0 bg-background border border-secondary/20 rounded-lg flex items-center justify-center group-hover:border-secondary/50 transition-colors relative">
@@ -56,12 +112,12 @@ export default function ServicesPage() {
             </div>
             <div>
               <h2 className="text-2xl font-black mb-3 uppercase tracking-wide text-text-main group-hover:text-secondary transition-colors">PCB Micro-Soldering</h2>
-              <p className="text-text-main/70 font-light leading-relaxed">Liquid damage physical cleaning, burnt IC replacement, and precision soldering. We diagnose and fix dead laptops at the raw hardware component level.</p>
+              <p className="text-text-main/70 font-light leading-relaxed">Liquid damage physical cleaning, burnt IC replacement, and precision logic board soldering. We diagnose and fix dead laptops at the raw hardware component level.</p>
             </div>
-          </div>
+          </article>
 
-          {/* Service Item 3 */}
-          <div className="group flex flex-col md:flex-row items-start md:items-center gap-8 bg-primary rounded-xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/30 transition-all duration-500 shadow-sm hover:shadow-md relative overflow-hidden">
+          {/* Service Item 3: Power & Peripherals */}
+          <article className="group flex flex-col md:flex-row items-start md:items-center gap-8 bg-primary rounded-xl p-8 md:p-10 border border-secondary/10 hover:border-secondary/30 transition-all duration-500 shadow-sm hover:shadow-md relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top delay-150"></div>
 
             <div className="w-20 h-20 shrink-0 bg-background border border-secondary/20 rounded-lg flex items-center justify-center group-hover:border-secondary/50 transition-colors relative">
@@ -70,17 +126,17 @@ export default function ServicesPage() {
             </div>
             <div>
               <h2 className="text-2xl font-black mb-3 uppercase tracking-wide text-text-main group-hover:text-secondary transition-colors">Power & Peripherals</h2>
-              <p className="text-text-main/70 font-light leading-relaxed">Swollen battery extraction, broken charging port (DC Jack) physical replacements, and installing new laptop keyboards and trackpads.</p>
+              <p className="text-text-main/70 font-light leading-relaxed">Swollen battery extraction, broken charging port DC Jack physical replacements, and installing new laptop keyboards and precision trackpads.</p>
             </div>
-          </div>
+          </article>
 
         </div>
 
-        {/* Brands Supported Section (Google Ads Safe) */}
-        <div className="bg-primary rounded-xl p-8 md:p-14 border border-secondary/10 text-center relative overflow-hidden shadow-sm">
+        {/* Brands Supported Section Google Ads Safe */}
+        <section className="bg-primary rounded-xl p-8 md:p-14 border border-secondary/10 text-center relative overflow-hidden shadow-sm" aria-label="Supported Laptop Brands">
           <h2 className="text-2xl md:text-3xl font-black mb-6 uppercase tracking-widest text-text-main">Supported Devices</h2>
           <p className="text-text-main/70 mb-10 max-w-2xl mx-auto font-light">
-            As an <strong className="text-secondary font-bold">independent service provider</strong>, we possess the tools for out-of-warranty hardware repairs on all major global architectures.
+            As an <strong className="text-secondary font-bold">independent service provider</strong>, we possess the tools and expertise for out-of-warranty hardware repairs on all major global architectures.
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-10">
@@ -94,10 +150,10 @@ export default function ServicesPage() {
           <div className="p-5 bg-background border border-secondary/20 rounded-lg inline-block text-left max-w-3xl border-l-4 border-l-secondary">
             <p className="text-[11px] text-text-main/60 font-medium leading-relaxed">
               <span className="text-secondary font-bold uppercase block mb-1">Important Disclaimer:</span>
-              We are NOT officially affiliated with, authorized by, or endorsed by any major laptop manufacturer. We are a completely independent, third-party hardware repair service specializing in out-of-warranty physical damage.
+              We are NOT officially affiliated with, authorized by, or endorsed by any major laptop manufacturer. We are a completely independent, third-party hardware repair laboratory specializing in out-of-warranty physical damage.
             </p>
           </div>
-        </div>
+        </section>
 
         {/* Bottom CTA */}
         <div className="mt-20 text-center">

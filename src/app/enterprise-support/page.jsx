@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export default function EnterpriseSupport() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,7 +14,7 @@ export default function EnterpriseSupport() {
     setSubmitStatus(null);
 
     const formData = new FormData(event.target);
-    // Aapki Live Web3Forms Access Key
+    // Live Web3Forms Access Key
     formData.append("access_key", "3e6b6c0e-c53d-48a9-b6ce-f4c3c4b80fe1"); 
 
     const object = Object.fromEntries(formData);
@@ -34,12 +33,13 @@ export default function EnterpriseSupport() {
       const result = await response.json();
       
       if (result.success) {
-        setSubmitStatus("success");
-        event.target.reset();
+        // Redirecting to the Thank You page for accurate Google Ads Conversion Tracking
+        window.location.href = "/thank-you";
       } else {
         setSubmitStatus("error");
       }
     } catch (error) {
+      console.error("Form Submission Error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -51,17 +51,45 @@ export default function EnterpriseSupport() {
     e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
   };
 
+  // Structured Data specifically for B2B Corporate IT Services in Noida
+  const b2bServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Corporate IT Hardware Diagnostics and Maintenance",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "LPCARE.TECH B2B",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Noida",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "201305"
+      }
+    },
+    "areaServed": ["Noida", "Delhi NCR", "Gurugram"],
+    "audience": {
+      "@type": "BusinessAudience"
+    },
+    "description": "Enterprise hardware maintenance and micro-soldering lab for corporate IT fleets."
+  };
+
   return (
     <div className="min-h-screen bg-background text-text-main selection:bg-secondary/10 selection:text-secondary relative">
       
-      {/* BACKGROUND GLOW */}
+      {/* Injecting B2B Service Schema into the DOM */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(b2bServiceSchema) }}
+      />
+
+      {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
 
-      {/* HERO SECTION (Split Layout for Lead Gen) */}
-      <section className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
+      {/* Hero Section Split Layout for Lead Generation */}
+      <section className="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10" aria-label="Corporate IT Services Noida">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           
-          {/* LEFT SIDE: Copy & Offers */}
+          {/* Left Side: Copy and Offers */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -70,7 +98,7 @@ export default function EnterpriseSupport() {
           >
             <div className="inline-flex items-center gap-2 border border-secondary/20 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
-              Verified B2B IT Partner
+              Verified B2B IT Partner in Noida
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-text-main mb-6 leading-[1.1]">
@@ -79,10 +107,10 @@ export default function EnterpriseSupport() {
             </h1>
 
             <p className="text-text-main/70 text-base md:text-lg font-medium leading-relaxed mb-8 max-w-lg">
-              Outsource your enterprise hardware maintenance to Delhi NCR's premier micro-soldering lab. We specialize in logic board rework for corporate fleets, reducing your IT procurement costs.
+              Outsource your enterprise hardware maintenance to Delhi NCR and Noida's premier micro-soldering lab. We specialize in logic board rework for corporate fleets, effectively reducing your IT procurement costs.
             </p>
 
-            {/* B2B OFFERS SECTION */}
+            {/* B2B Offers Section */}
             <div className="bg-primary/50 border border-secondary/20 rounded-2xl p-6 mb-8 shadow-sm">
               <h3 className="text-sm font-black text-secondary uppercase tracking-widest mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" /></svg>
@@ -95,11 +123,11 @@ export default function EnterpriseSupport() {
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="mt-1 bg-secondary/10 p-1 rounded-md text-secondary"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
-                  <p className="text-sm text-text-main/80 font-medium"><strong>15% Off AMC:</strong> Flat discount on Annual Maintenance Contracts for 50+ devices.</p>
+                  <p className="text-sm text-text-main/80 font-medium"><strong>15% Off AMC:</strong> Flat discount on Annual Maintenance Contracts for 50 or more devices.</p>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="mt-1 bg-secondary/10 p-1 rounded-md text-secondary"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg></div>
-                  <p className="text-sm text-text-main/80 font-medium"><strong>Priority SLA:</strong> Dedicated account manager with 24-48 hour turnaround time.</p>
+                  <p className="text-sm text-text-main/80 font-medium"><strong>Priority SLA:</strong> Dedicated account manager with 24 to 48 hour turnaround time in Noida.</p>
                 </li>
               </ul>
             </div>
@@ -114,7 +142,7 @@ export default function EnterpriseSupport() {
             </div>
           </motion.div>
 
-          {/* RIGHT SIDE: Lead Generation Form (Top of Page) */}
+          {/* Right Side: Lead Generation Form */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -126,10 +154,11 @@ export default function EnterpriseSupport() {
             </div>
             
             <h2 className="text-2xl font-black uppercase tracking-tight mb-2">Claim Your <span className="text-secondary">Corporate Offer</span></h2>
-            <p className="text-sm text-text-main/60 mb-8 font-medium">Fill details to get a custom quote and free fleet audit.</p>
+            <p className="text-sm text-text-main/60 mb-8 font-medium">Fill details to get a custom quote and free fleet audit in Noida.</p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <input type="hidden" name="subject" value="URGENT: New B2B Lead from Landing Page Offers" />
+              <input type="hidden" name="from_name" value="Enterprise B2B Page" />
               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
               <div>
@@ -139,7 +168,7 @@ export default function EnterpriseSupport() {
 
               <div>
                 <label className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-1.5">Contact Person *</label>
-                <input type="text" name="name" required className="w-full bg-background border border-secondary/10 rounded-lg px-4 py-3 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="Your Name & Designation" />
+                <input type="text" name="name" required className="w-full bg-background border border-secondary/10 rounded-lg px-4 py-3 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="Your Name and Designation" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -149,26 +178,40 @@ export default function EnterpriseSupport() {
                 </div>
                 <div>
                   <label className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-1.5">Corporate Phone *</label>
-                  <input type="tel" name="phone" required onInput={handlePhoneInput} pattern="[0-9]{10}" maxLength="10" className="w-full bg-background border border-secondary/10 rounded-lg px-4 py-3 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="10-digit number" />
+                  <div className="relative flex items-center">
+                    <span className="absolute left-3 text-sm font-medium text-text-main/60">+91</span>
+                    <input type="tel" name="phone" required onInput={handlePhoneInput} pattern="[0-9]{10}" maxLength="10" className="w-full bg-background border border-secondary/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="10-digit number" />
+                  </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-1.5">Hardware Fleet Size & Requirement *</label>
+                <label className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-1.5">Hardware Fleet Size and Requirement *</label>
                 <textarea name="message" rows={3} required className="w-full bg-background border border-secondary/10 rounded-lg px-4 py-3 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none resize-none transition-all" placeholder="e.g. Need diagnostics for 20 Dell Latitude workstations..."></textarea>
               </div>
 
               <button type="submit" disabled={isSubmitting} className={`w-full py-4 rounded-xl font-black text-xs tracking-[0.2em] uppercase transition-all duration-300 shadow-premium flex items-center justify-center gap-2 ${isSubmitting ? "bg-secondary/50 text-primary cursor-not-allowed" : "bg-secondary text-primary hover:bg-black hover:-translate-y-1"}`}>
-                {isSubmitting ? "Processing..." : "Submit B2B Inquiry ➔"}
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  "Submit B2B Inquiry"
+                )}
               </button>
 
-              {submitStatus === "success" && (
-                <div className="p-3 bg-green-50 border border-green-200 rounded-lg mt-2 text-center">
-                  <p className="text-green-800 text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase">✓ Inquiry Sent! Our B2B Manager will call you shortly.</p>
+              {/* Error Message */}
+              {submitStatus === "error" && (
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg mt-2 text-center" role="alert">
+                  <p className="text-red-800 text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase">Network Error. Please call us directly.</p>
                 </div>
               )}
               
-              {/* GOOGLE ADS STRICT COMPLIANCE DISCLAIMER */}
+              {/* Google Ads Strict Compliance Disclaimer */}
               <div className="mt-4 text-[9px] sm:text-[10px] text-text-main/50 leading-relaxed text-center border-t border-secondary/10 pt-4">
                 <strong>Policy Compliance:</strong> Services are strictly for registered businesses, corporate entities, and IT fleets. We do NOT provide technical support or consumer technology repairs to individuals.
               </div>
@@ -177,8 +220,8 @@ export default function EnterpriseSupport() {
         </div>
       </section>
 
-      {/* WHY PARTNER WITH US (Value Props below fold) */}
-      <section className="py-16 px-6 bg-primary/50 border-t border-secondary/10">
+      {/* Why Partner With Us Value Props below fold */}
+      <section className="py-16 px-6 bg-primary/50 border-t border-secondary/10" aria-label="Corporate IT Advantages">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <div className="w-12 h-12 mx-auto bg-secondary/10 text-secondary rounded-full flex items-center justify-center mb-4">
@@ -199,12 +242,12 @@ export default function EnterpriseSupport() {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             </div>
             <h4 className="font-bold uppercase tracking-widest text-sm mb-2">Cost Effective</h4>
-            <p className="text-xs text-text-main/60">Special B2B pricing and billing terms for bulk IT hardware.</p>
+            <p className="text-xs text-text-main/60">Special B2B pricing and billing terms for bulk IT hardware in Noida.</p>
           </div>
         </div>
       </section>
 
-      {/* FLOATING ACTION BUTTONS (Call & WhatsApp) */}
+      {/* Floating Action Buttons Call and WhatsApp */}
       <div className="fixed bottom-6 right-6 flex flex-col gap-4 z-50">
         
         {/* Floating Call Button */}

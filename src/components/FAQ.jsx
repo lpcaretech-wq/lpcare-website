@@ -6,27 +6,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  // Aapke Business ke liye sabse zyada pooche jane wale questions
+  // Frequently Asked Questions Optimized for Local Noida SEO
   const faqs = [
     {
-      question: "Do you charge for hardware diagnostics?",
-      answer: "Our initial physical inspection is completely free. If your device requires deep motherboard-level diagnostics (micro-soldering testing), we will inform you of any minimal diagnostic fee before proceeding."
+      question: "Do you charge for laptop hardware diagnostics in Noida?",
+      answer: "Our initial physical inspection at our Noida sector 168 facility is completely free. If your device requires deep motherboard-level diagnostics and micro-soldering testing, we will inform you of any minimal diagnostic fee before proceeding."
     },
     {
       question: "Will my data be safe during a dead motherboard repair?",
-      answer: "Absolutely. We follow a strict 'No Data Snooping' policy. Your data remains untouched on your storage drive during the hardware repair process. However, we always recommend keeping a backup."
+      answer: "Absolutely. We follow a strict 'No Data Snooping' policy at our Delhi NCR lab. Your data remains untouched on your storage drive during the hardware repair process. However, we always recommend keeping a secure backup."
     },
     {
-      question: "How long does a chip-level repair usually take?",
-      answer: "Standard repairs like screen or battery replacements take 24-48 hours. Complex chip-level motherboard repairs can take 3 to 5 business days depending on the severity of the damage and OEM part availability."
+      question: "How long does a chip-level laptop repair usually take?",
+      answer: "Standard repairs like screen or battery replacements take 24 to 48 hours. Complex chip-level motherboard repairs can take 3 to 5 business days depending on the severity of the damage and OEM part availability in our Noida inventory."
     },
     {
-      question: "Do you use original (OEM) parts for replacements?",
-      answer: "Yes, we strictly use original equipment manufacturer (OEM) or the highest-grade equivalent parts to ensure the longevity and premium performance of your restored device."
+      question: "Do you use original OEM parts for screen and battery replacements?",
+      answer: "Yes, we strictly use original equipment manufacturer (OEM) or the highest-grade equivalent parts to ensure the longevity and premium performance of your restored laptop."
     },
     {
-      question: "Is LPCARE.TECH an authorized Apple or HP service center?",
-      answer: "We are a premium independent hardware laboratory. This allows us to perform component-level repairs (like fixing a single chip) rather than forcing you to buy a highly expensive, entirely new motherboard as authorized centers often do."
+      question: "Is LPCARE.TECH an authorized Apple or HP service center in Noida?",
+      answer: "We are a premium independent hardware laboratory based in Noida. This allows us to perform component-level repairs, like fixing a single shorted chip, rather than forcing you to buy a highly expensive, entirely new motherboard as authorized centers often do."
     }
   ];
 
@@ -34,7 +34,7 @@ export default function FAQ() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  // 👇 GOOGLE SEO FAQ SCHEMA GENERATOR 👇
+  // Google SEO FAQ Schema Generator for Rich Snippets
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -49,7 +49,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-24 bg-background relative overflow-hidden" aria-label="Frequently Asked Questions">
       {/* Injecting SEO Schema into the DOM */}
       <script
         type="application/ld+json"
@@ -89,10 +89,11 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-primary border border-secondary/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-premium transition-all duration-300"
+              className="bg-primary border border-secondary/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
             >
               <button
                 onClick={() => toggleFAQ(index)}
+                aria-expanded={activeIndex === index}
                 className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
               >
                 <span className="text-sm md:text-base font-bold text-secondary tracking-wide pr-8">

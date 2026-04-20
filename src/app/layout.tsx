@@ -9,10 +9,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 
-// Premium Font
+// Premium Font Configuration
 const inter = Inter({ subsets: ["latin"] });
 
-// 👇 HIGHLY ADVANCED SEO & GOOGLE ADS METADATA 👇
+// Global SEO and Google Ads Metadata Configuration
 export const metadata: Metadata = {
   metadataBase: new URL('https://lpcare.tech'),
   title: {
@@ -21,11 +21,9 @@ export const metadata: Metadata = {
   },
   description: "Delhi NCR's most trusted independent hardware diagnostic and micro-soldering lab. We restore dead motherboards and shattered displays with strict data privacy in Noida.",
   
-  // 👇 GOOGLE SEARCH CONSOLE VERIFICATION ADDED HERE 👇
   verification: {
     google: 'e8unYwT9yirxTZHtKxDho_qtIioMu5mXXVgjLq3CN1w',
   },
-  // 👆 👆 👆
 
   keywords: [
     "Laptop Repair Noida",
@@ -41,7 +39,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "LPCARE.TECH" }],
   creator: "LPCARE.TECH",
-  // 👇 FAVICON AUR ICONS YAHAN SET KIYE GAYE HAIN 👇
+  
   icons: {
     icon: '/logo/lpcaretechicon.png',
     shortcut: '/logo/lpcaretechicon.png',
@@ -49,7 +47,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "LPCARE.TECH | Premium Hardware Repair Lab",
-    description: "Don't discard. We restore. Enterprise-grade chip-level repairs for your premium devices in Noida & Delhi NCR.",
+    description: "Enterprise-grade chip-level repairs for your premium devices in Noida and Delhi NCR. Strict data privacy ensured.",
     url: "https://lpcare.tech",
     siteName: "LPCARE.TECH",
     locale: "en_IN",
@@ -71,7 +69,7 @@ export const metadata: Metadata = {
   },
 };
 
-// 👇 JSON-LD SCHEMA FOR LOCAL BUSINESS 👇
+// JSON-LD Schema for Local Business SEO
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "ComputerStore",
@@ -100,7 +98,12 @@ const localBusinessSchema = {
     "opens": "10:00",
     "closes": "20:00"
   },
-  "priceRange": "₹₹",
+  "priceRange": "INR",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "142"
+  },
   "sameAs": ["https://lpcare.tech"]
 };
 
@@ -119,7 +122,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-background text-text-main antialiased flex flex-col min-h-screen`}>
         
-        {/* 👇 GOOGLE ADS TRACKING TAG (Smart Next.js Integration) 👇 */}
+        {/* Google Ads Tracking Tag Setup */}
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=AW-18044724364`}

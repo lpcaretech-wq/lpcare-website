@@ -6,15 +6,16 @@ export const metadata = {
   keywords: [
     "MacBook repair near me",
     "Dead motherboard repair Noida",
-    "Laptop screen replacement UP",
-    "Data recovery services NCR",
-    "Chip-level hardware lab",
-    "PC water damage repair",
+    "Laptop screen replacement Noida",
+    "Data recovery services Delhi NCR",
+    "Chip-level hardware lab Noida",
+    "PC water damage repair Sector 168",
+    "Laptop charging port repair Noida",
     "LPCARE services"
   ],
   openGraph: {
-    title: "LPCARE.TECH | Our Premium Repair Services",
-    description: "From micro-soldering to data recovery, explore our high-end IT and hardware restoration services.",
+    title: "LPCARE.TECH | Our Premium Repair Services in Noida",
+    description: "From micro-soldering to physical display replacement, explore our high-end IT and hardware restoration services in Delhi NCR.",
     url: "https://lpcare.tech/services",
     siteName: "LPCARE.TECH",
     locale: "en_IN",
@@ -26,5 +27,5 @@ export const metadata = {
 };
 
 export default function ServicesLayout({ children }) {
-  return <>{children}</>;
+  return <section className="services-layout-wrapper w-full h-full">{children}</section>;
 }

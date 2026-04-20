@@ -1,72 +1,67 @@
 // src/app/disclaimer/page.jsx
-"use client";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
+export const metadata = {
+  title: "Disclaimer | LPCARE.TECH",
+  description: "Legal disclaimer for LPCARE.TECH regarding independent hardware laboratory operations, OEM trademarks, and scope of physical repair services.",
+};
 
 export default function Disclaimer() {
-  const currentDate = new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
-
   return (
-    <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      
-      <div className="absolute top-0 right-1/2 translate-x-1/2 w-[700px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
-
-      <div className="max-w-4xl mx-auto relative z-10">
+    <div className="min-h-screen bg-background text-text-main py-24 px-6 relative selection:bg-secondary/10 selection:text-secondary">
+      <div className="max-w-4xl mx-auto bg-primary border border-secondary/10 p-8 md:p-14 rounded-3xl shadow-sm">
         
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 bg-primary border border-secondary/10 px-4 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
-            Legal Information
+        <div className="mb-12 border-b border-secondary/10 pb-8 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-[10px] font-bold tracking-[0.2em] uppercase mb-4 shadow-sm">
+            Legal Compliance
           </div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter text-text-main uppercase mb-4">
-            Legal <span className="text-accent">Disclaimer</span>
-          </h1>
-          <p className="text-sm font-medium text-text-main/60 uppercase tracking-widest">
-            Last Updated: {currentDate}
-          </p>
-        </motion.div>
+          <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4">Legal <span className="text-secondary">Disclaimer</span></h1>
+          <p className="text-text-main/60 text-sm font-medium">Last Updated: April 2026</p>
+        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="bg-primary rounded-3xl shadow-premium border border-secondary/5 p-8 md:p-14 text-text-main/80 space-y-8"
-        >
+        <div className="space-y-10 text-sm leading-relaxed text-text-main/80">
           
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">Independent Service Provider</h2>
-            <p className="leading-relaxed text-sm">
-              <strong>LPCARE.TECH</strong> is an independent third-party hardware repair and IT service center. We are <strong>not</strong> affiliated with, associated with, authorized, endorsed by, or in any way officially connected with Apple Inc., Dell, HP, Lenovo, Asus, Acer, Samsung, or any other computer/mobile Original Equipment Manufacturer (OEM).
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">1. Independent Laboratory Status</h2>
+            <p className="mb-4">
+              LPCARE.TECH is a strictly independent, third-party physical hardware diagnostic and micro-soldering laboratory. <strong>We are NOT an authorized service provider, nor are we affiliated with, sponsored by, or endorsed by Apple Inc., Dell Technologies, HP, Lenovo, Asus, Acer, or any other Original Equipment Manufacturer (OEM).</strong>
+            </p>
+            <p>
+              All trademarks, logos, brand names, and product images mentioned on this website are the registered properties of their respective owners. Their use on this website is solely for the purpose of identifying the hardware compatibility of the physical repair services we offer.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">Trademarks</h2>
-            <p className="leading-relaxed text-sm">
-              All product and company names, logos, brands, and other trademarks or images featured or referred to within the LPCARE.TECH website are the property of their respective trademark holders. These trademark holders are not affiliated with LPCARE.TECH, our products, or our website. They do not sponsor or endorse our materials.
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">2. Strict Scope of Operations</h2>
+            <p className="mb-3">To comply strictly with global advertising policies regarding third-party consumer technology support:</p>
+            <ul className="list-disc pl-6 space-y-2 text-text-main/70">
+              <li>LPCARE.TECH <strong>does not</strong> offer remote technical support, online troubleshooting, or consumer helpdesk services.</li>
+              <li>LPCARE.TECH <strong>does not</strong> provide software installation, virus removal, or operating system support.</li>
+              <li>All services require the device to be physically present at our laboratory for component-level hardware repair or part replacement.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">3. Out-of-Warranty Repairs</h2>
+            <p>
+              Our physical hardware interventions are designed for devices that are outside their original manufacturer warranty. You acknowledge that having third-party physical repairs, micro-soldering, or hardware replacements performed on your device by LPCARE.TECH may void any remaining official manufacturer warranty.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">Warranty Void Notice</h2>
-            <p className="leading-relaxed text-sm">
-              Please be advised that having your device diagnosed or repaired by an independent third-party repair center like LPCARE.TECH may void any existing manufacturer warranties. It is your responsibility to check your warranty status before handing over your device to us for repair.
+          <section>
+            <h2 className="text-xl font-bold uppercase tracking-wider text-secondary mb-4">4. Limitation of Liability</h2>
+            <p>
+              While we exercise the highest professional standards in micro-soldering and physical repairs, working with severely damaged hardware (such as liquid-damaged motherboards) carries inherent risks. LPCARE.TECH is not liable for further degradation of a physically unstable device during the diagnostic process, nor are we responsible for any incidental data loss. Data backup remains the sole responsibility of the device owner.
             </p>
           </section>
 
-          <section className="space-y-4">
-            <h2 className="text-2xl font-black text-secondary tracking-tight uppercase">No Guarantees</h2>
-            <p className="leading-relaxed text-sm">
-              While we use our highest level of expertise to perform chip-level repairs, the nature of electronics means that some devices may be beyond economical or physical repair. We do not guarantee that every single device submitted can be restored to full working condition.
-            </p>
-          </section>
-
-        </motion.div>
+        </div>
+        
+        <div className="mt-16 pt-8 border-t border-secondary/10 text-center">
+          <Link href="/" className="inline-block text-xs font-bold text-secondary hover:text-text-main uppercase tracking-widest transition-colors">
+            &larr; Return to Homepage
+          </Link>
+        </div>
       </div>
     </div>
   );

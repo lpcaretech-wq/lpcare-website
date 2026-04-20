@@ -16,7 +16,7 @@ export default function ContactPage() {
 
     const formData = new FormData(event.target);
     
-    // Aapki Live Web3Forms Access Key
+    // Live Web3Forms Access Key
     formData.append("access_key", "3e6b6c0e-c53d-48a9-b6ce-f4c3c4b80fe1"); 
 
     const object = Object.fromEntries(formData);
@@ -35,8 +35,7 @@ export default function ContactPage() {
       const result = await response.json();
       
       if (result.success) {
-        setSubmitStatus("success");
-        event.target.reset(); // Form submit hone ke baad clear ho jayega
+        window.location.href = "/thank-you"; // Form bharne ke baad seedha thank you page par redirect!
       } else {
         setSubmitStatus("error");
       }
@@ -45,20 +44,18 @@ export default function ContactPage() {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
-      // Success ya Error message 6 second baad automatically hide ho jayega
       setTimeout(() => setSubmitStatus(null), 6000);
     }
   };
 
-  // Phone number me sirf 10 digits allow karne ke liye function
   const handlePhoneInput = (e) => {
     e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
   };
 
   return (
-    <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center relative overflow-hidden" aria-label="Hardware Repair Booking Page">
       
-      {/* Background Soft Glow matching Hero Section */}
+      {/* Background Soft Glow */}
       <motion.div 
         animate={{ scale: [1, 1.05, 1], opacity: [0.03, 0.06, 0.03] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -79,7 +76,7 @@ export default function ContactPage() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent"></span>
             </span>
-            <span className="text-secondary">Premium Support</span>
+            <span className="text-secondary">Hardware Diagnostic Booking</span>
           </motion.div>
 
           <motion.h1 
@@ -88,11 +85,14 @@ export default function ContactPage() {
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tighter text-text-main uppercase"
           >
-            GET IN <span className="text-accent">TOUCH</span>
+            BOOK YOUR <span className="text-accent">REPAIR</span>
           </motion.h1>
+          <p className="text-text-main/70 mt-4 max-w-2xl mx-auto font-medium">
+            Schedule a physical hardware diagnostic at our Noida lab or request a pickup across Delhi NCR. We specialize exclusively in component-level physical repairs.
+          </p>
         </div>
 
-        {/* Main Contact Container (Ultra Premium Card) */}
+        {/* Main Contact Container */}
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,14 +100,14 @@ export default function ContactPage() {
           className="bg-primary rounded-3xl shadow-premium overflow-hidden flex flex-col lg:flex-row border border-secondary/5"
         >
           
-          {/* Left Side - Obsidian Black Information Panel */}
+          {/* Left Side Information Panel */}
           <div className="bg-secondary text-primary p-10 lg:p-14 lg:w-2/5 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-accent/20 rounded-full blur-[60px] pointer-events-none"></div>
 
             <div className="relative z-10">
-              <h2 className="text-3xl font-black mb-4 tracking-tight uppercase">Contact <br/><span className="text-accent">LPCARE.TECH</span></h2>
+              <h2 className="text-3xl font-black mb-4 tracking-tight uppercase">Visit Our <br/><span className="text-accent">Laboratory</span></h2>
               <p className="text-primary/70 font-medium mb-12 text-sm leading-relaxed">
-                Delhi NCR's premium hardware lab. Bring your dead motherboards and displays back to life. Connect with our experts today.
+                Delhi NCR's premium physical hardware laboratory. We do not provide remote software support. Please bring your device for physical inspection.
               </p>
 
               <div className="space-y-10">
@@ -117,12 +117,12 @@ export default function ContactPage() {
                     <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   </div>
                   <div>
-                    <h3 className="text-[11px] font-bold text-primary/50 uppercase tracking-[0.15em] mb-1">Shop Address</h3>
+                    <h3 className="text-[11px] font-bold text-primary/50 uppercase tracking-[0.15em] mb-1">Hardware Lab Address</h3>
                     <p className="text-sm font-medium leading-relaxed">
                       Shop LPCARE.TECH<br />
                       Noida sec-168 chhapraoli<br />
                       Near SK Homes<br />
-                      Pincode 201305
+                      UP, Pincode 201305
                     </p>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                     <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                   </div>
                   <div>
-                    <h3 className="text-[11px] font-bold text-primary/50 uppercase tracking-[0.15em] mb-1">Phone Number</h3>
+                    <h3 className="text-[11px] font-bold text-primary/50 uppercase tracking-[0.15em] mb-1">Contact Diagnostics Team</h3>
                     <p className="text-sm font-medium">+91 8557065447</p>
                   </div>
                 </div>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                     <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   </div>
                   <div>
-                    <h3 className="text-[11px] font-bold text-primary/50 uppercase tracking-[0.15em] mb-1">Email</h3>
+                    <h3 className="text-[11px] font-bold text-primary/50 uppercase tracking-[0.15em] mb-1">Email Inquiry</h3>
                     <p className="text-sm font-medium">Lpcaretech@gmail.com</p>
                   </div>
                 </div>
@@ -152,14 +152,12 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Side - Premium Form */}
+          {/* Right Side Hardware Booking Form */}
           <div className="p-10 lg:p-14 lg:w-3/5 bg-primary">
             <form onSubmit={handleSubmit} className="space-y-6">
               
-              {/* Web3Forms Advanced Configurations */}
-              <input type="hidden" name="subject" value="High Priority: New Lead from LPCARE.TECH" />
-              <input type="hidden" name="from_name" value="LPCARE Website Client" />
-              {/* Spam Protection (Honeypot) - Prevents bots from submitting */}
+              <input type="hidden" name="subject" value="Hardware Diagnostic Request from LPCARE.TECH" />
+              <input type="hidden" name="from_name" value="Hardware Lab Website Booking" />
               <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -208,19 +206,27 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="relative">
-                  <label htmlFor="device" className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-2">Device / Issue</label>
-                  <input
-                    type="text"
-                    id="device"
-                    name="device"
-                    className="w-full bg-background border border-secondary/10 rounded-lg px-5 py-3.5 text-sm text-text-main focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300"
-                    placeholder="e.g. MacBook Dead Logic Board"
-                  />
+                  {/* FIX: Removed selected from option and added defaultValue to select */}
+                  <label htmlFor="issue_type" className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-2">Hardware Issue Type *</label>
+                  <select
+                    id="issue_type"
+                    name="issue_type"
+                    required
+                    defaultValue=""
+                    className="w-full bg-background border border-secondary/10 rounded-lg px-5 py-3.5 text-sm text-text-main focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 appearance-none"
+                  >
+                    <option value="" disabled>Select Physical Damage</option>
+                    <option value="Dead Motherboard / Micro-soldering">Dead Motherboard / Logic Board</option>
+                    <option value="Broken Display Screen">Physically Broken Display/Screen</option>
+                    <option value="Battery / Charging Port">Battery / Charging Port Failure</option>
+                    <option value="Liquid Damage Hardware Cleaning">Liquid Damage Physical Cleaning</option>
+                    <option value="Keyboard / Trackpad Replacement">Keyboard / Trackpad Replacement</option>
+                  </select>
                 </div>
               </div>
 
               <div className="relative">
-                <label htmlFor="message" className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-2">Message *</label>
+                <label htmlFor="message" className="block text-[10px] font-bold text-text-main/60 uppercase tracking-[0.15em] mb-2">Device Details & Symptoms *</label>
                 <textarea
                   id="message"
                   name="message"
@@ -228,7 +234,7 @@ export default function ContactPage() {
                   required
                   minLength="10"
                   className="w-full bg-background border border-secondary/10 rounded-lg px-5 py-3.5 text-sm text-text-main focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 resize-none"
-                  placeholder="Describe the problem with your device in detail..."
+                  placeholder="E.g. MacBook Pro M1, spilled coffee, device won't turn on..."
                 />
               </div>
 
@@ -244,7 +250,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <label htmlFor="consent" className="text-[11px] text-text-main/70 leading-relaxed cursor-pointer">
-                  I agree to the <Link href="/privacy-policy" className="text-accent hover:underline font-semibold">Privacy Policy</Link> and consent to LPCARE.TECH collecting my details to contact me regarding my inquiry.
+                  I agree to the <Link href="/privacy-policy" className="text-accent hover:underline font-semibold">Privacy Policy</Link> and understand that LPCARE.TECH provides independent physical hardware repairs and does not offer remote software technical support.
                 </label>
               </div>
 
@@ -266,33 +272,32 @@ export default function ContactPage() {
                     </>
                   ) : (
                     <>
-                      SUBMIT REQUEST
+                      BOOK HARDWARE DIAGNOSTICS
                       <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </>
                   )}
                 </button>
               </div>
 
-              {/* Status Messages */}
-              {submitStatus === "success" && (
-                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-green-50 border border-green-200 rounded-xl mt-4">
-                  <p className="text-green-800 text-xs text-center font-bold tracking-[0.1em] uppercase">
-                    ✓ Request submitted successfully. Our technical team will call you shortly.
-                  </p>
-                </motion.div>
-              )}
-
+              {/* Error Message */}
               {submitStatus === "error" && (
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-4 bg-red-50 border border-red-200 rounded-xl mt-4">
                   <p className="text-red-800 text-xs text-center font-bold tracking-[0.1em] uppercase">
-                    ⚠ Something went wrong. Please check your network or call us directly.
+                    ⚠ Network error. Please call our hardware lab directly.
                   </p>
                 </motion.div>
               )}
             </form>
           </div>
         </motion.div>
+        
+        {/* Strict Ads Policy Legal Disclaimer Footer */}
+        <div className="mt-12 text-center border-t border-secondary/10 pt-6">
+           <p className="text-[10px] text-text-main/50 uppercase tracking-wide max-w-4xl mx-auto leading-relaxed font-bold">
+             Compliance Notice: This form is exclusively for booking physical hardware diagnostics and logic board micro-soldering. We are an independent repair facility and do not provide remote consumer technical support or software assistance.
+           </p>
+        </div>
       </div>
     </div>
   );
-} 
+}
