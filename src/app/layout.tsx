@@ -114,13 +114,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
+      <body className={`${inter.className} bg-background text-text-main antialiased flex flex-col min-h-screen`}>
+        
+        {/* Google Schema (SEO) - Next.js valid placement */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-      </head>
-      <body className={`${inter.className} bg-background text-text-main antialiased flex flex-col min-h-screen`}>
         
         {/* Google Ads Tracking Tag Setup */}
         <Script
@@ -144,12 +144,13 @@ export default function RootLayout({
 
         <Navbar />
         
-        <main className="flex-grow">
+        <main className="grow">
           {children}
         </main>
         
         <Footer />
         
+        {/* Global WhatsApp Button */}
         <WhatsAppButton />
       </body>
     </html>

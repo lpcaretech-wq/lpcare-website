@@ -1,8 +1,18 @@
 // src/components/WhatsAppButton.jsx
 "use client";
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
+  
+  // In pages par floating button HIDE karna hai taaki double double na dikhe
+  const hiddenPages = ['/enterprise-support', '/doorstep-repair'];
+  
+  if (hiddenPages.includes(pathname)) {
+    return null; // Don't render anything
+  }
+
   // Aapka number (without +)
   const phoneNumber = "918557065447"; 
   // Pre-filled message jo user bhejega
@@ -17,7 +27,7 @@ export default function WhatsAppButton() {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5, delay: 1, ease: "easeOut" }}
-      className="fixed bottom-6 right-6 z-[100] flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:bg-[#1ebe57] transition-all duration-300 hover:-translate-y-1 group"
+      className="fixed bottom-6 right-6 z-100 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:bg-[#1ebe57] transition-all duration-300 hover:-translate-y-1 group"
       aria-label="Chat with us on WhatsApp"
     >
       {/* Ping Animation - Dhyan aakarshit karne ke liye */}

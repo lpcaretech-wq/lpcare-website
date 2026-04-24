@@ -30,7 +30,7 @@ export default function HeroSection() {
       <motion.div 
         animate={{ scale: [1, 1.05, 1], opacity: [0.03, 0.06, 0.03] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent rounded-full blur-[150px] z-0 pointer-events-none"
+        className="absolute top-0 right-0 w-150 h-150 bg-accent rounded-full blur-[150px] z-0 pointer-events-none"
       />
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-8 w-full">
@@ -101,11 +101,11 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
           >
-            <a href="tel:+918557065447" className="bg-secondary text-primary hover:bg-black font-bold py-4 px-8 rounded-full tracking-[0.1em] uppercase text-sm transition-all duration-300 shadow-premium hover:shadow-2xl hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+            <a href="tel:+918557065447" className="bg-secondary text-primary hover:bg-black font-bold py-4 px-8 rounded-full tracking-widest uppercase text-sm transition-all duration-300 shadow-premium hover:shadow-2xl hover:-translate-y-1 text-center flex items-center justify-center gap-2">
               <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
               Call Hardware Expert
             </a>
-            <a href="/contact" className="bg-primary border border-accent/30 hover:border-secondary text-secondary font-bold py-4 px-8 rounded-full transition-all duration-300 tracking-[0.1em] uppercase text-sm text-center shadow-sm hover:shadow-premium flex items-center justify-center gap-2">
+            <a href="/contact" className="bg-primary border border-accent/30 hover:border-secondary text-secondary font-bold py-4 px-8 rounded-full transition-all duration-300 tracking-widest uppercase text-sm text-center shadow-sm hover:shadow-premium flex items-center justify-center gap-2">
               Book Free Diagnostics
               <span className="text-lg leading-none" aria-hidden="true">→</span>
             </a>
@@ -114,7 +114,7 @@ export default function HeroSection() {
 
         {/* Right Side: 3D Side/Isometric Premium Laptop Animation */}
         <div 
-          className="flex-1 w-full max-w-2xl aspect-square flex items-center justify-center relative z-10 hidden md:flex"
+          className="flex-1 w-full max-w-2xl aspect-square items-center justify-center relative z-10 hidden md:flex"
           style={{ perspective: "1500px" }} 
           onMouseMove={handleMouse}
           onMouseLeave={resetMouse}
@@ -130,12 +130,12 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-black/15 blur-2xl rounded-2xl" style={{ translateZ: -60, transform: "scale(1.15)" }}></div>
 
             {/* --- LAPTOP BASE (Keyboard Deck) --- */}
-            <div className="absolute inset-0 bg-[#E5E5EA] border border-[#FFFFFF] rounded-2xl shadow-xl flex flex-col items-center justify-end p-2 pb-4" style={{ transformStyle: "preserve-3d" }}>
+            <div className="absolute inset-0 bg-[#E5E5EA] border border-primary rounded-2xl shadow-xl flex flex-col items-center justify-end p-2 pb-4" style={{ transformStyle: "preserve-3d" }}>
                
                {/* Recessed Keyboard Area */}
                <div className="w-[85%] h-[55%] bg-[#D1D1D6] rounded-md shadow-inner p-1.5 grid grid-cols-7 gap-1">
                   {[...Array(28)].map((_, i) => (
-                    <div key={i} className={`bg-[#F9F9FB] rounded-[2px] shadow-sm ${i === 14 ? 'border border-[#8E8E93]/30' : ''}`}></div>
+                    <div key={i} className={`bg-[#F9F9FB] rounded-xs shadow-sm ${i === 14 ? 'border border-[#8E8E93]/30' : ''}`}></div>
                   ))}
                </div>
                
@@ -144,12 +144,12 @@ export default function HeroSection() {
 
                {/* Base Side Edges (Gives 3D Thickness to the base) */}
                <div className="absolute top-full left-0 w-full h-1.5 bg-[#C7C7CC] rounded-b-2xl" style={{ transformOrigin: "top", rotateX: -90 }}></div>
-               <div className="absolute top-0 -left-1.5 w-1.5 h-full bg-[#FFFFFF] rounded-l-2xl" style={{ transformOrigin: "right", rotateY: -90 }}></div>
+               <div className="absolute top-0 -left-1.5 w-1.5 h-full bg-primary rounded-l-2xl" style={{ transformOrigin: "right", rotateY: -90 }}></div>
             </div>
 
             {/* --- LAPTOP SCREEN LID --- */}
             <div 
-              className="absolute bottom-full left-0 w-full h-52 bg-[#E5E5EA] border-x border-t border-[#FFFFFF] rounded-t-2xl shadow-2xl"
+              className="absolute bottom-full left-0 w-full h-52 bg-[#E5E5EA] border-x border-t border-primary rounded-t-2xl shadow-2xl"
               style={{ 
                  transformOrigin: "bottom", 
                  rotateX: -105, // Angled slightly back
@@ -161,7 +161,7 @@ export default function HeroSection() {
                  <div className="w-full h-full bg-[#000000] border border-[#333333] rounded-md relative overflow-hidden flex flex-col justify-center items-center shadow-inner">
                     
                     {/* Minimal Scanning Glow */}
-                    <div className="absolute top-0 left-0 w-full h-[1px] bg-white/30 shadow-[0_0_20px_rgba(255,255,255,0.8)] animate-[scan_3s_ease-in-out_infinite]"></div>
+                    <div className="absolute top-0 left-0 w-full h-px bg-white/30 shadow-[0_0_20px_rgba(255,255,255,0.8)] animate-[scan_3s_ease-in-out_infinite]"></div>
                     
                     {/* Premium Boot Screen */}
                     <div className="w-8 h-8 border border-white/60 rounded-full flex items-center justify-center mb-3 relative">
@@ -173,7 +173,7 @@ export default function HeroSection() {
               </div>
 
               {/* Lid Top Edge (Thickness) */}
-              <div className="absolute bottom-full left-0 w-full h-1 bg-[#FFFFFF] rounded-t-xl" style={{ transformOrigin: "bottom", rotateX: 90 }}></div>
+              <div className="absolute bottom-full left-0 w-full h-1 bg-primary rounded-t-xl" style={{ transformOrigin: "bottom", rotateX: 90 }}></div>
             </div>
 
             {/* Floating Premium Badge */}

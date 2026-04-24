@@ -1,216 +1,222 @@
 // src/app/doorstep-repair/page.jsx
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function DoorstepLandingPage() {
+// --- NATIVE SVG ICONS (No external library needed) ---
+const PhoneCall = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path><path d="M14.05 2a9 9 0 0 1 8 7.94"></path><path d="M14.05 6A5 5 0 0 1 18 10"></path></svg>
+);
+const MessageCircle = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+);
+const Star = ({ size = 24, fill = "none", className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+);
+const ShieldCheck = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+);
+const Clock = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+);
+const MapPin = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+);
+const CheckCircle2 = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+);
+const Monitor = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
+);
+const Cpu = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="16" height="16" x="4" y="4" rx="2"></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg>
+);
+// -----------------------------------------------------
+
+export default function DoorstepRepair() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  const PHONE_NUMBER = "+918557065447"; 
+  const DISPLAY_PHONE = "085570 65447";
+  const WHATSAPP_URL = `https://wa.me/918557065447?text=${encodeURIComponent("Hi, I need urgent doorstep laptop repair service.")}`;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
-
+    
     const formData = new FormData(event.target);
-    // Live Web3Forms Access Key
     formData.append("access_key", "3e6b6c0e-c53d-48a9-b6ce-f4c3c4b80fe1"); 
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: json
+        body: formData,
       });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        window.location.href = "/thank-you"; // Redirect to track Ads Conversion
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus("success");
+        event.target.reset();
+        setTimeout(() => {
+          window.location.href = "/thank-you";
+        }, 1500);
       } else {
         setSubmitStatus("error");
       }
     } catch (error) {
-      console.error("Form Submission Error:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(null), 6000);
     }
   };
 
   const handlePhoneInput = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 10);
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
   };
 
   return (
-    <div className="min-h-screen bg-background text-text-main relative overflow-hidden selection:bg-secondary/10 selection:text-secondary pb-12">
+    <div className="min-h-screen bg-gray-50 pb-12 font-sans relative">
       
-      {/* Background Soft Glows */}
-      <div className="absolute top-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent/10 rounded-full blur-[100px] md:blur-[120px] pointer-events-none z-0"></div>
-      <div className="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-secondary/10 rounded-full blur-[100px] md:blur-[120px] pointer-events-none z-0"></div>
+      {/* 🚨 TOP URGENCY ALERT BAR */}
+      <div className="bg-red-600 text-white text-center py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 z-50 relative">
+        <span className="animate-pulse">🔴</span> Urgent Repair? Call directly for a free 2-minute estimate!
+      </div>
 
-      {/* Main Hero Section with Form (Above the Fold) */}
-      <section className="relative pt-20 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-          
-          {/* Left Side: Copywriting & Trust */}
+      {/* 📱 MOBILE STICKY CALL BUTTON */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full z-50 p-3 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.1)] flex gap-2">
+        <a 
+          href={`tel:${PHONE_NUMBER}`} 
+          className="flex-2 bg-blue-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 animate-bounce-slight"
+        >
+          <PhoneCall size={22} className="animate-pulse" />
+          Tap To Call Now
+        </a>
+        <a 
+          href={WHATSAPP_URL} 
+          className="flex-1 bg-[#25D366] text-white font-bold py-3.5 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30"
+        >
+          <MessageCircle size={24} />
+        </a>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-20">
+        
+        {/* HERO SECTION */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center lg:text-left order-1 lg:order-none"
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 border border-secondary/20 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Free Doorstep Pickup 
+            {/* Trust Badges */}
+            <div className="flex items-center gap-2 mb-6">
+              <div className="flex text-yellow-400">
+                {[...Array(5)].map((_, i) => <Star key={i} size={18} fill="currentColor" />)}
+              </div>
+              <span className="text-sm font-bold text-gray-700">4.9/5 Rating (150+ Repairs in Noida)</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black uppercase tracking-tighter text-text-main mb-4 md:mb-6 leading-[1.15]">
-              DEAD LAPTOP? <br />
-              <span className="text-secondary text-[1.75rem] sm:text-3xl md:text-4xl xl:text-5xl block mt-1 md:mt-2">WE FIX IT FROM HOME.</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 tracking-tight">
+              MacBook or Laptop Dead? We Fix It <span className="text-blue-600 border-b-4 border-blue-600">At Your Home.</span>
             </h1>
-
-            <p className="text-text-main/70 text-sm sm:text-base md:text-lg font-medium leading-relaxed mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0">
-              Independent physical hardware lab specializing in micro-soldering, broken screens, and dead motherboards. Book a free pickup across Delhi NCR.
+            
+            <p className="text-lg md:text-xl text-gray-600 mb-8 font-medium">
+              Don't leave your data at a shop. Get certified hardware repair directly in front of you in Noida, Greater Noida & Ghaziabad.
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 md:gap-4 mb-8">
-              <div className="flex items-center gap-2 text-xs md:text-sm font-bold text-text-main/80 uppercase tracking-wide">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                No Fix, No Fee
-              </div>
-              <div className="hidden sm:block text-secondary/50">•</div>
-              <div className="flex items-center gap-2 text-xs md:text-sm font-bold text-text-main/80 uppercase tracking-wide">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-accent shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                OEM Hardware
-              </div>
-            </div>
-
-            {/* Direct CTA Buttons on Mobile & Desktop - ONLY ONCE */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <a href="tel:+918557065447" className="w-full sm:w-auto bg-secondary text-primary hover:bg-black font-bold py-3.5 md:py-4 px-6 md:px-8 rounded-full tracking-[0.1em] uppercase text-xs transition-all duration-300 shadow-premium flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                Call Lab Expert
+            
+            {/* Primary Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <a 
+                href={`tel:${PHONE_NUMBER}`}
+                className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold rounded-xl shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-1"
+              >
+                <PhoneCall size={24} />
+                {DISPLAY_PHONE}
               </a>
-              <a href="https://wa.me/918557065447?text=Hi%20LPCARE%20Lab!%20I%20need%20to%20book%20a%20Doorstep%20Laptop%20Pickup.%20Please%20share%20the%20details." target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-[#25D366] text-white hover:bg-green-600 font-bold py-3.5 md:py-4 px-6 md:px-8 rounded-full tracking-[0.1em] uppercase text-xs transition-all duration-300 shadow-premium flex items-center justify-center gap-2">
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/></svg>
+              <a 
+                href={WHATSAPP_URL}
+                className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#20b858] text-white text-lg font-bold rounded-xl shadow-xl shadow-green-500/20 transition-all hover:-translate-y-1"
+              >
+                <MessageCircle size={24} />
                 WhatsApp Us
               </a>
             </div>
+
+            {/* Guarantees */}
+            <div className="flex flex-wrap items-center gap-6 text-sm text-gray-800 font-bold bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+              <span className="flex items-center gap-2"><ShieldCheck className="text-blue-600" size={20}/> No Fix, No Fee</span>
+              <span className="flex items-center gap-2"><Clock className="text-blue-600" size={20}/> 60-Min Response</span>
+              <span className="flex items-center gap-2"><MapPin className="text-blue-600" size={20}/> Local Lab Experts</span>
+            </div>
           </motion.div>
 
-          {/* Right Side: High Converting Lead Form */}
+          {/* SUPER SIMPLE BOOKING FORM */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-primary border border-secondary/10 p-6 sm:p-8 rounded-3xl shadow-2xl relative order-2 lg:order-none"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 border-[3px] border-gray-50 relative"
           >
-            <div className="absolute -top-3 -right-2 md:-top-4 md:-right-4 bg-accent text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-lg z-20 animate-bounce">
-              Book Pickup Now
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap shadow-md">
+              Prefer a Call Back?
             </div>
             
-            <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-1">Schedule <span className="text-secondary">Pickup</span></h2>
-            <p className="text-[11px] md:text-xs text-text-main/60 mb-5 md:mb-6 font-medium">Fast, secure, and purely physical hardware diagnostics.</p>
-
-            <form onSubmit={handleSubmit} className="space-y-3.5 md:space-y-4">
-              <input type="hidden" name="subject" value="URGENT: Doorstep Pickup Lead from Ads" />
-              <input type="hidden" name="from_name" value="Doorstep Landing Page" />
+            <h3 className="text-2xl font-bold text-center text-gray-900 mb-2 mt-4">Get A Quick Estimate</h3>
+            <p className="text-gray-500 text-center mb-6 text-sm">Enter your number and our technician will call you in 5 minutes.</p>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input type="hidden" name="subject" value="URGENT: Call Back Request (Doorstep)" />
               
               <div>
-                <input type="text" name="name" required className="w-full bg-background border border-secondary/10 rounded-xl px-4 py-3 md:py-3.5 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="Your Full Name *" />
+                <input type="text" name="name" required className="w-full px-4 py-4 bg-gray-50 rounded-xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-medium" placeholder="Your Name" />
               </div>
 
               <div>
-                <div className="relative flex items-center">
-                  <span className="absolute left-4 text-sm font-medium text-text-main/60">+91</span>
-                  <input type="tel" name="phone" required onInput={handlePhoneInput} pattern="[0-9]{10}" maxLength="10" className="w-full bg-background border border-secondary/10 rounded-xl pl-12 pr-4 py-3 md:py-3.5 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="Mobile Number *" />
-                </div>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  required 
+                  minLength="10" 
+                  maxLength="10" 
+                  pattern="[0-9]{10}"
+                  onInput={handlePhoneInput}
+                  className="w-full px-4 py-4 bg-gray-50 rounded-xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-medium text-lg tracking-wider" 
+                  placeholder="Mobile Number *" 
+                />
               </div>
 
-              <div className="relative">
-                <select name="issue_type" required defaultValue="" className="w-full bg-background border border-secondary/10 rounded-xl px-4 py-3 md:py-3.5 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all appearance-none cursor-pointer">
-                  <option value="" disabled>Select Physical Hardware Issue *</option>
-                  <option value="Dead Motherboard">Dead Motherboard / Won't Turn On</option>
-                  <option value="Broken Screen">Shattered Display / Screen Panel</option>
-                  <option value="Battery/Charging">Battery / Charging Port Issue</option>
-                  <option value="Liquid Damage">Liquid Spill / Water Damage</option>
-                  <option value="Keyboard/Trackpad">Broken Keyboard / Trackpad</option>
-                </select>
-                {/* Custom mobile-friendly down arrow for select */}
-                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-text-main/40">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                </div>
-              </div>
-
-              <div>
-                <input type="text" name="address" required className="w-full bg-background border border-secondary/10 rounded-xl px-4 py-3 md:py-3.5 text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all" placeholder="City & Locality (e.g., Sec 62, Noida) *" />
-              </div>
-
-              <div className="flex items-start gap-3 pt-1 pb-2">
-                <input type="checkbox" id="policy_consent" required className="mt-0.5 w-4 h-4 text-accent border-secondary/30 rounded focus:ring-accent" />
-                <label htmlFor="policy_consent" className="text-[10px] md:text-[11px] text-text-main/70 leading-relaxed font-medium cursor-pointer">
-                  I understand this is an independent hardware lab. No remote software/tech support is provided.
-                </label>
-              </div>
-
-              <button type="submit" disabled={isSubmitting} className={`w-full py-4 rounded-xl font-black text-xs md:text-sm tracking-[0.15em] uppercase transition-all duration-300 shadow-premium flex items-center justify-center gap-2 ${isSubmitting ? "bg-secondary/50 text-primary cursor-not-allowed" : "bg-secondary text-primary hover:bg-black hover:-translate-y-1"}`}>
-                {isSubmitting ? "Processing Request..." : "Request Doorstep Pickup"}
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl shadow-xl transition-all flex justify-center items-center gap-2 disabled:opacity-70 text-lg mt-2"
+              >
+                {isSubmitting ? "Connecting..." : "Request Call Back"}
               </button>
 
-              {submitStatus === "error" && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-center mt-2">
-                  <p className="text-red-800 text-[10px] font-bold tracking-[0.1em] uppercase">Network Error. Please Call or WhatsApp.</p>
+              {submitStatus === "success" && (
+                <div className="bg-green-50 text-green-700 p-3 rounded-lg text-center text-sm font-bold flex justify-center items-center gap-2 mt-4">
+                  <CheckCircle2 size={18} /> Call scheduled! Redirecting...
                 </div>
               )}
             </form>
           </motion.div>
-
         </div>
-      </section>
 
-      {/* Process Section */}
-      <section className="py-12 md:py-16 px-4 sm:px-6 bg-primary/30 border-y border-secondary/10 relative z-10" aria-label="How it works">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight mb-10 md:mb-12">How Doorstep <span className="text-secondary">Repair Works</span></h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 relative">
-            <div className="hidden md:block absolute top-8 left-1/6 right-1/6 h-0.5 bg-secondary/20 z-0"></div>
-
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-primary border-2 border-secondary text-secondary rounded-full flex items-center justify-center mb-4 text-lg md:text-xl font-black shadow-premium">1</div>
-              <h3 className="font-bold uppercase tracking-widest text-xs md:text-sm mb-2">Book a Pickup</h3>
-              <p className="text-[11px] md:text-xs text-text-main/60 max-w-[250px] md:max-w-xs text-center">Our runner will securely pick up your damaged laptop directly from your location.</p>
-            </div>
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-primary border-2 border-secondary text-secondary rounded-full flex items-center justify-center mb-4 text-lg md:text-xl font-black shadow-premium">2</div>
-              <h3 className="font-bold uppercase tracking-widest text-xs md:text-sm mb-2">Lab Diagnostics</h3>
-              <p className="text-[11px] md:text-xs text-text-main/60 max-w-[250px] md:max-w-xs text-center">Device arrives at our Noida lab for physical micro-soldering and hardware replacement.</p>
-            </div>
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-primary border-2 border-accent text-accent rounded-full flex items-center justify-center mb-4 text-lg md:text-xl font-black shadow-premium">3</div>
-              <h3 className="font-bold uppercase tracking-widest text-xs md:text-sm mb-2">Safe Return Drop</h3>
-              <p className="text-[11px] md:text-xs text-text-main/60 max-w-[250px] md:max-w-xs text-center">Once physically repaired and tested, the device is securely delivered back to your doorstep.</p>
-            </div>
+        {/* TRUST SIGNALS FOR HARDWARE */}
+        <div className="py-8 text-center border-t border-gray-200 opacity-70">
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">Expert level hardware diagnostics for</p>
+          <div className="flex justify-center items-center gap-8 md:gap-16 flex-wrap">
+             <span className="font-bold text-gray-400 text-xl flex items-center gap-2"><Monitor size={20}/> Display Panels</span>
+             <span className="font-bold text-gray-400 text-xl flex items-center gap-2"><Cpu size={20}/> Logic Boards</span>
+             <span className="font-bold text-gray-400 text-xl font-mono">Micro-Soldering</span>
           </div>
         </div>
-      </section>
 
-      {/* Strict Ads Policy Legal Disclaimer */}
-      <div className="mt-10 text-center pt-4 pb-6 max-w-4xl mx-auto px-4 relative z-10">
-         <p className="text-[9px] sm:text-[10px] text-text-main/50 uppercase tracking-widest leading-relaxed font-bold border border-secondary/10 bg-primary/80 p-4 md:p-5 rounded-xl shadow-sm">
-           Independent Physical Hardware Repair Laboratory. We are not officially affiliated with Apple, Dell, HP, or Lenovo. We do NOT provide remote software technical support, virus removal, or consumer helpdesk services.
-         </p>
       </div>
-
     </div>
   );
 }
