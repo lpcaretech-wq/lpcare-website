@@ -1,10 +1,12 @@
 // src/app/doorstep-repair/page.jsx
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import BookingForm from "@/components/BookingForm";
+import CTABanner from "@/components/CTABanner";
 
-// --- NATIVE SVG ICONS (No external library needed) ---
+// --- NATIVE SVG ICONS ---
 const PhoneCall = ({ size = 24, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path><path d="M14.05 2a9 9 0 0 1 8 7.94"></path><path d="M14.05 6A5 5 0 0 1 18 10"></path></svg>
 );
@@ -23,9 +25,6 @@ const Clock = ({ size = 24, className = "" }) => (
 const MapPin = ({ size = 24, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
 );
-const CheckCircle2 = ({ size = 24, className = "" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
-);
 const Monitor = ({ size = 24, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="20" height="14" x="2" y="3" rx="2"></rect><line x1="8" x2="16" y1="21" y2="21"></line><line x1="12" x2="12" y1="17" y2="21"></line></svg>
 );
@@ -35,61 +34,36 @@ const Cpu = ({ size = 24, className = "" }) => (
 // -----------------------------------------------------
 
 export default function DoorstepRepair() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
   const PHONE_NUMBER = "+918557065447"; 
   const DISPLAY_PHONE = "085570 65447";
   const WHATSAPP_URL = `https://wa.me/918557065447?text=${encodeURIComponent("Hi, I need urgent doorstep laptop repair service.")}`;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-    
-    const formData = new FormData(event.target);
-    formData.append("access_key", "3e6b6c0e-c53d-48a9-b6ce-f4c3c4b80fe1"); 
-
-    try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
+  // --- GOOGLE ADS BUTTON CLICK TRACKING ---
+  const handleLeadClick = (leadType) => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag('event', 'conversion', {
+          'send_to': 'AW-18044724364/p_6LCN_p8a8aEKye_8ks', // Aapka Conversion Label
+          'event_category': 'Direct_Contact',
+          'event_label': leadType, 
+          'value': 1.0,
+          'currency': 'INR'
       });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitStatus("success");
-        event.target.reset();
-        setTimeout(() => {
-          window.location.href = "/thank-you";
-        }, 1500);
-      } else {
-        setSubmitStatus("error");
-      }
-    } catch (error) {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
-  const handlePhoneInput = (e) => {
-    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-50 pb-12 font-sans relative">
+    <div className="min-h-screen bg-gray-50 pb-0 font-sans relative">
       
       {/* 🚨 TOP URGENCY ALERT BAR */}
       <div className="bg-red-600 text-white text-center py-2 px-4 text-sm font-bold flex items-center justify-center gap-2 z-50 relative">
-        <span className="animate-pulse">🔴</span> Urgent Repair? Call directly for a free 2-minute estimate!
+        <span className="animate-pulse">🔴</span> Urgent Repair? Call directly for a free estimate!
       </div>
 
-      {/* 📱 MOBILE STICKY CALL BUTTON */}
+      {/* 📱 MOBILE STICKY CALL BUTTON WITH TRACKING */}
       <div className="md:hidden fixed bottom-0 left-0 w-full z-50 p-3 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.1)] flex gap-2">
         <a 
           href={`tel:${PHONE_NUMBER}`} 
+          onClick={() => handleLeadClick('Phone_Call_Mobile')}
           className="flex-2 bg-blue-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 animate-bounce-slight"
         >
           <PhoneCall size={22} className="animate-pulse" />
@@ -97,13 +71,16 @@ export default function DoorstepRepair() {
         </a>
         <a 
           href={WHATSAPP_URL} 
+          onClick={() => handleLeadClick('WhatsApp_Chat_Mobile')}
+          target="_blank" 
+          rel="noopener noreferrer"
           className="flex-1 bg-[#25D366] text-white font-bold py-3.5 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30"
         >
           <MessageCircle size={24} />
         </a>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-20 pb-16">
         
         {/* HERO SECTION */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
@@ -128,10 +105,11 @@ export default function DoorstepRepair() {
               Don't leave your data at a shop. Get certified hardware repair directly in front of you in Noida, Greater Noida & Ghaziabad.
             </p>
             
-            {/* Primary Action Buttons */}
+            {/* Primary Action Buttons WITH TRACKING */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <a 
                 href={`tel:${PHONE_NUMBER}`}
+                onClick={() => handleLeadClick('Phone_Call_Desktop')}
                 className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold rounded-xl shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-1"
               >
                 <PhoneCall size={24} />
@@ -139,6 +117,9 @@ export default function DoorstepRepair() {
               </a>
               <a 
                 href={WHATSAPP_URL}
+                onClick={() => handleLeadClick('WhatsApp_Chat_Desktop')}
+                target="_blank" 
+                rel="noopener noreferrer"
                 className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#20b858] text-white text-lg font-bold rounded-xl shadow-xl shadow-green-500/20 transition-all hover:-translate-y-1"
               >
                 <MessageCircle size={24} />
@@ -154,56 +135,17 @@ export default function DoorstepRepair() {
             </div>
           </motion.div>
 
-          {/* SUPER SIMPLE BOOKING FORM */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 border-[3px] border-gray-50 relative"
-          >
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap shadow-md">
-              Prefer a Call Back?
-            </div>
-            
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-2 mt-4">Get A Quick Estimate</h3>
-            <p className="text-gray-500 text-center mb-6 text-sm">Enter your number and our technician will call you in 5 minutes.</p>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="hidden" name="subject" value="URGENT: Call Back Request (Doorstep)" />
-              
-              <div>
-                <input type="text" name="name" required className="w-full px-4 py-4 bg-gray-50 rounded-xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-medium" placeholder="Your Name" />
-              </div>
-
-              <div>
-                <input 
-                  type="tel" 
-                  name="phone" 
-                  required 
-                  minLength="10" 
-                  maxLength="10" 
-                  pattern="[0-9]{10}"
-                  onInput={handlePhoneInput}
-                  className="w-full px-4 py-4 bg-gray-50 rounded-xl border border-gray-200 focus:bg-white focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none transition-all font-medium text-lg tracking-wider" 
-                  placeholder="Mobile Number *" 
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl shadow-xl transition-all flex justify-center items-center gap-2 disabled:opacity-70 text-lg mt-2"
-              >
-                {isSubmitting ? "Connecting..." : "Request Call Back"}
-              </button>
-
-              {submitStatus === "success" && (
-                <div className="bg-green-50 text-green-700 p-3 rounded-lg text-center text-sm font-bold flex justify-center items-center gap-2 mt-4">
-                  <CheckCircle2 size={18} /> Call scheduled! Redirecting...
-                </div>
-              )}
-            </form>
-          </motion.div>
+          {/* IMPORTED UNIVERSAL BOOKING FORM */}
+          <div className="relative">
+            <BookingForm 
+              title="Get A Quick Estimate"
+              subtitle="Enter your number and our technician will call you in 5 minutes."
+              subject="URGENT: Call Back Request (Doorstep Page)"
+              buttonText="Request Call Back"
+              showEmail={false}
+              isPremium={false} // White, clean B2C look
+            />
+          </div>
         </div>
 
         {/* TRUST SIGNALS FOR HARDWARE */}
@@ -217,6 +159,10 @@ export default function DoorstepRepair() {
         </div>
 
       </div>
+
+      {/* REUSABLE CTA BANNER (Universal) */}
+      <CTABanner />
+
     </div>
   );
 }

@@ -38,17 +38,53 @@ export default function NoidaLocationPage() {
     "description": "Independent physical laptop hardware repair lab specializing in screen replacement, dead motherboard recovery, and micro-soldering in Noida."
   };
 
+  // NEW: AEO / AI Overview Schema for Voice Search & Generative Engines
+  const noidaFAQSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where can I fix a dead MacBook motherboard near Sector 62, Noida?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LPCARE.TECH operates a specialized micro-soldering lab in Sector 168, Noida, easily accessible from Sector 62. We specialize in chip-level logic board recovery and dead motherboard repairs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide original laptop screen replacements in Noida?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we execute precision physical replacements using high-grade OEM panels available in our Noida inventory for all major brands."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much time does it take for laptop repair in Noida?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Screen and battery replacements are typically done within 2-4 hours. Deep motherboard micro-soldering may take 24-48 hours depending on the damage severity."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background text-text-main relative overflow-hidden selection:bg-secondary/10 selection:text-secondary">
       
-      {/* Injecting Noida Specific Local SEO Schema */}
+      {/* Injecting Noida Specific Local SEO & FAQ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(noidaLocalSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(noidaFAQSchema) }}
+      />
 
-      {/* Decorative Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-secondary/5 blur-[120px] pointer-events-none z-0"></div>
+      {/* Decorative Background - FIXED TAILWIND WARNINGS HERE */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-200 h-125 bg-secondary/5 blur-[120px] pointer-events-none z-0"></div>
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 max-w-7xl mx-auto z-10 text-center" aria-label="Noida Repair Services">
@@ -59,22 +95,28 @@ export default function NoidaLocationPage() {
         >
           <div className="inline-flex items-center gap-2 border border-secondary/20 bg-secondary/5 text-secondary px-4 py-2 rounded-full text-xs font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
             <span className="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
-            Serving Noida and Greater Noida
+            Serving Noida, Greater Noida & Delhi NCR
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter text-text-main mb-6 leading-tight">
             Premium Hardware <br /> Repair in <span className="text-secondary">Noida.</span>
           </h1>
           <p className="text-text-main/70 text-lg md:text-xl font-medium max-w-3xl mx-auto leading-relaxed mb-10">
-            Located in Sector 168, we are Noida's premier independent micro-soldering laboratory. We revive dead motherboards and replace physically damaged screens using high-quality OEM components.
+            Located conveniently in Sector 168 (near Advant Navis), we are Noida's premier independent micro-soldering laboratory. We revive dead motherboards and replace physically damaged screens using high-quality OEM components.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="tel:+918557065447" className="w-full sm:w-auto bg-secondary text-white font-bold py-4 px-10 rounded-full uppercase tracking-widest hover:bg-black transition-colors duration-300 shadow-premium">
               Call Noida Lab
             </a>
-            <Link href="/contact" className="w-full sm:w-auto bg-primary border border-secondary/20 text-text-main font-bold py-4 px-10 rounded-full uppercase tracking-widest hover:border-secondary transition-colors duration-300 shadow-sm">
+            {/* SXO UPDATE: Direct Google Maps Link for immediate conversion */}
+            <a 
+              href="https://maps.google.com/?q=28.5041,77.4026(LPCARE.TECH+Noida+Sector+168)" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-full sm:w-auto bg-primary border border-secondary/20 text-text-main font-bold py-4 px-10 rounded-full uppercase tracking-widest hover:border-secondary transition-colors duration-300 shadow-sm"
+            >
               Get Directions
-            </Link>
+            </a>
           </div>
         </motion.div>
       </section>
@@ -101,13 +143,21 @@ export default function NoidaLocationPage() {
         </div>
       </section>
 
+      {/* NEW: Information Gain & Entity Density Section for AI Overviews */}
+      <section className="py-16 px-6 max-w-4xl mx-auto text-center relative z-10" aria-label="About LPCARE Noida Lab">
+        <h2 className="text-2xl font-black uppercase text-text-main mb-4">Why Choose Our Sector 168 Lab?</h2>
+        <p className="text-text-main/70 leading-relaxed text-sm">
+          Unlike generic repair shops, <strong>LPCARE.TECH in Noida</strong> is a dedicated hardware-only facility equipped with advanced micro-soldering stations. Strategically located near the Noida-Greater Noida Expressway, we provide fast, high-success-rate repairs for clients commuting from <strong>Sector 62, Sector 18, and Greater Noida</strong>. We maintain a 98% success rate on dead motherboard recoveries that other service centers declare "unrepairable."
+        </p>
+      </section>
+
       {/* Hyper-Local Services Section */}
-      <section className="py-24 px-6 max-w-7xl mx-auto relative z-10" aria-label="Noida Hardware Services">
+      <section className="py-16 px-6 max-w-7xl mx-auto relative z-10" aria-label="Noida Hardware Services">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-text-main mb-4">
             Our Noida <span className="text-secondary">Hardware Expertise</span>
           </h2>
-          <p className="text-text-main/70 max-w-2xl mx-auto">Drop off your physically damaged device at our Sector 168 facility. We cater to individual consumers and businesses across Noida, Sector 62, and Sector 18.</p>
+          <p className="text-text-main/70 max-w-2xl mx-auto">Drop off your physically damaged device at our Sector 168 facility. We cater to individual consumers and businesses across Noida Expressway, Sector 62, and Sector 18.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -136,6 +186,21 @@ export default function NoidaLocationPage() {
             <p className="text-sm text-text-main/70 leading-relaxed">Physical extraction of swollen batteries and soldering of broken charging ports. Ensure consistent power delivery with our hardware-only interventions.</p>
           </div>
 
+        </div>
+      </section>
+
+      {/* NEW: Local FAQ Section for AEO (Answer Engine Optimization) */}
+      <section className="py-16 px-6 max-w-4xl mx-auto relative z-10" aria-label="Noida Repair FAQs">
+        <h2 className="text-2xl font-black uppercase text-center text-text-main mb-10">Frequently Asked in <span className="text-secondary">Noida</span></h2>
+        <div className="space-y-4">
+          <div className="border border-secondary/20 p-6 rounded-lg bg-primary/30">
+            <h4 className="font-bold text-lg mb-2">Where can I fix a dead MacBook motherboard near Sector 62?</h4>
+            <p className="text-sm text-text-main/70">Our specialized micro-soldering lab is located in Sector 168, just a short drive down the expressway from Sector 62. We handle dead motherboard recoveries that other shops reject.</p>
+          </div>
+          <div className="border border-secondary/20 p-6 rounded-lg bg-primary/30">
+            <h4 className="font-bold text-lg mb-2">How quickly can you replace a laptop screen?</h4>
+            <p className="text-sm text-text-main/70">Most physical screen replacements at our Noida facility are completed within 2-4 hours, provided the OEM panel is in our local inventory.</p>
+          </div>
         </div>
       </section>
 

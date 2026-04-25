@@ -9,7 +9,7 @@ import TestimonialSlider from '@/components/TestimonialSlider';
 import TrustedBy from '@/components/TrustedBy';
 import CTABanner from '@/components/CTABanner';
 
-// JSON-LD Schema for SEO
+// JSON-LD Schema for SEO - Updated to pass authority to the Noida URL
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -18,14 +18,16 @@ const serviceSchema = {
       "@type": "Service",
       "position": 1,
       "name": "Laptop Screen Replacement Noida",
+      "url": "https://lpcare.tech/locations/noida",
       "provider": { "@type": "ComputerStore", "name": "LPCARE.TECH" },
       "areaServed": { "@type": "City", "name": "Noida" },
-      "description": "High-quality physical laptop screen replacement with OEM panels in Noida."
+      "description": "High-quality physical laptop screen replacement with OEM panels in Noida Sector 168."
     },
     {
       "@type": "Service",
       "position": 2,
       "name": "Chip-level Motherboard Repair",
+      "url": "https://lpcare.tech/locations/noida",
       "provider": { "@type": "ComputerStore", "name": "LPCARE.TECH" },
       "areaServed": { "@type": "State", "name": "Delhi NCR" },
       "description": "Expert micro-soldering and logic board repair for dead laptops."
@@ -45,7 +47,7 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <HeroSection />
 
-      {/* 2. NEW: Trusted By Ticker (B2B Trust Signal) */}
+      {/* 2. Trusted By Ticker (B2B Trust Signal) */}
       <TrustedBy />
 
       {/* 3. Business Metrics */}
@@ -67,6 +69,26 @@ export default function HomePage() {
             <h3 className="text-4xl md:text-5xl font-black text-secondary">10+</h3>
             <p className="text-xs font-bold uppercase tracking-widest text-text-main/60">Years Exp.</p>
           </div>
+        </div>
+      </section>
+
+      {/* NEW: SEO Internal Linking Authority Block */}
+      <section className="py-12 px-6 bg-secondary/5 border-y border-secondary/10 text-center relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl md:text-2xl font-black uppercase text-text-main mb-4">
+            Visit Our Flagship Lab in <span className="text-secondary">Noida</span>
+          </h2>
+          <p className="text-text-main/70 text-sm mb-6 leading-relaxed">
+            Need urgent hardware recovery? Drop off your device at our state-of-the-art micro-soldering facility. 
+            We provide fast, No Fix No Fee diagnostics for the entire Delhi NCR region.
+          </p>
+          <Link 
+            href="/locations/noida" 
+            className="inline-block bg-primary border border-secondary/30 text-text-main font-bold py-3 px-8 rounded-full uppercase tracking-widest hover:border-secondary transition-colors duration-300 shadow-sm text-sm"
+            title="Laptop Repair in Noida Sector 168"
+          >
+            Explore Noida Sector 168 Lab &rarr;
+          </Link>
         </div>
       </section>
 
@@ -143,7 +165,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. NEW: Animated Testimonial Slider */}
+      {/* 6. Animated Testimonial Slider */}
       <section className="py-24 px-6 bg-primary z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -171,7 +193,7 @@ export default function HomePage() {
       {/* 8. Dynamic FAQ */}
       <FAQ />
 
-      {/* 9. NEW: FINAL CTA BANNER (Universal) */}
+      {/* 9. FINAL CTA BANNER */}
       <CTABanner />
       
     </div>

@@ -9,8 +9,8 @@ export default function BookingForm({
   subtitle = "Enter your details and our lab technician will call you in 5 minutes.",
   subject = "New General Lead",
   buttonText = "Request Call Back",
-  showEmail = false, // Agar B2B page hai toh ise true pass kar sakte hain
-  isPremium = false // UI ko dark/premium banane ke liye
+  showEmail = false, 
+  isPremium = false 
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -21,7 +21,7 @@ export default function BookingForm({
     setSubmitStatus(null);
     
     const formData = new FormData(event.target);
-    // Aapki universal Web3Forms Key
+    // Universal Web3Forms Key
     formData.append("access_key", "3e6b6c0e-c53d-48a9-b6ce-f4c3c4b80fe1"); 
 
     try {
@@ -33,11 +33,23 @@ export default function BookingForm({
       const data = await response.json();
 
       if (data.success) {
+        // --- GOOGLE ADS CONVERSION TRACKING ---
+        // Jab form success ho jaye tab ye event trigger hoga
+        if (typeof window !== "undefined" && window.gtag) {
+          window.gtag('event', 'conversion', {
+              'send_to': 'AW-18044724364/p_6LCN_p8a8aEKye_8ks', // Aapka Conversion Label
+              'value': 1.0,
+              'currency': 'INR'
+          });
+        }
+
         setSubmitStatus("success");
         event.target.reset();
+        
+        // Success ke baad Thank You page par redirect
         setTimeout(() => {
           window.location.href = "/thank-you";
-        }, 1500);
+        }, 2000);
       } else {
         setSubmitStatus("error");
       }
@@ -45,7 +57,7 @@ export default function BookingForm({
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(null), 8000); // Clear error after 8 secs
+      setTimeout(() => setSubmitStatus(null), 8000); 
     }
   };
 
@@ -61,9 +73,9 @@ export default function BookingForm({
       transition={{ duration: 0.5 }}
       className={`rounded-2xl shadow-2xl p-6 md:p-8 relative ${isPremium ? 'bg-primary border border-secondary/20' : 'bg-white border-[3px] border-gray-50'}`}
     >
-      {/* Top Badge */}
+      {/* Visual Indicator */}
       <div className={`absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-sm font-bold whitespace-nowrap shadow-md ${isPremium ? 'bg-secondary text-primary' : 'bg-gray-900 text-white'}`}>
-        Prefer a Call Back?
+        Priority Support
       </div>
       
       <h3 className={`text-2xl font-black text-center mt-4 mb-2 tracking-tight ${isPremium ? 'text-text-main uppercase' : 'text-gray-900'}`}>
@@ -74,7 +86,6 @@ export default function BookingForm({
       </p>
       
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Dynamic Subject Line */}
         <input type="hidden" name="subject" value={subject} />
         
         <div>
@@ -121,7 +132,10 @@ export default function BookingForm({
         >
           {isSubmitting ? (
             <span className="flex items-center gap-2">
-               <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+               <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+               </svg>
                Connecting...
             </span>
           ) : (
@@ -129,17 +143,16 @@ export default function BookingForm({
           )}
         </button>
 
-        {/* Success/Error Messages */}
         {submitStatus === "success" && (
           <div className="bg-green-50/10 border border-green-500/30 text-green-500 p-3 rounded-lg text-center text-sm font-bold flex justify-center items-center gap-2 mt-4">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" strokeWidth="2"></circle><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 12 2 2 4-4"></path></svg>
-            Request sent! Redirecting...
+             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m5 13 4 4L19 7" /></svg>
+             Lead Recorded! Calling you back...
           </div>
         )}
         
         {submitStatus === "error" && (
           <div className="bg-red-50/10 border border-red-500/30 text-red-500 p-3 rounded-lg text-center text-sm font-bold mt-4">
-            Network error. Please call us directly.
+            Submission failed. Please call us directly!
           </div>
         )}
       </form>

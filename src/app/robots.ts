@@ -2,17 +2,14 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://lpcare.tech';
-
   return {
     rules: {
-      userAgent: '*', // '*' ka matlab hai ki ye rule sabhi search engines (Google, Bing, etc.) ke liye hai
-      allow: '/',     // '/' ka matlab hai ki bots poori website ko scan kar sakte hain
-      disallow: [
-        '/api/',      // Agar aap future mein koi backend API banate hain, toh usey search mein aane se rokna chahiye
-        '/_next/',    // Next.js ke internal files ko hide karne ke liye
-      ],
+      userAgent: '*', // Allow all bots (Googlebot, Bingbot, etc.)
+      allow: '/',
+      // Disallow any private API routes or admin panels if you add them later
+      disallow: ['/private/', '/api/'], 
     },
-    sitemap: `${baseUrl}/sitemap.xml`, // Ye Google ko batayega ki aapka sitemap kahan rakha hai
+    // Crucial: Pointing the bots directly to your newly upgraded dynamic sitemap
+    sitemap: 'https://lpcare.tech/sitemap.xml',
   };
 }
