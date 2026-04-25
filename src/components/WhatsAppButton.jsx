@@ -19,11 +19,21 @@ export default function WhatsAppButton() {
   const message = "Hello LPCARE.TECH, I need help with my device repair.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
+  // --- GOOGLE ADS: WHATSAPP CLICK TRACKING ---
+  const handleWhatsAppClick = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag('event', 'conversion', {
+          'send_to': 'AW-18044724364/XgEVCKunsqIcEIzJspxD' // <-- WhatsApp Label Active
+      });
+    }
+  };
+
   return (
     <motion.a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleWhatsAppClick} // Tracking Click Here
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 0.5, delay: 1, ease: "easeOut" }}

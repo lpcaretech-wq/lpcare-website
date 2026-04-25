@@ -38,15 +38,20 @@ export default function DoorstepRepair() {
   const DISPLAY_PHONE = "085570 65447";
   const WHATSAPP_URL = `https://wa.me/918557065447?text=${encodeURIComponent("Hi, I need urgent doorstep laptop repair service.")}`;
 
-  // --- GOOGLE ADS BUTTON CLICK TRACKING ---
-  const handleLeadClick = (leadType) => {
+  // --- GOOGLE ADS: PHONE CALL CLICK TRACKING ---
+  const handleCallClick = () => {
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag('event', 'conversion', {
-          'send_to': 'AW-18044724364/p_6LCN_p8a8aEKye_8ks', // Aapka Conversion Label
-          'event_category': 'Direct_Contact',
-          'event_label': leadType, 
-          'value': 1.0,
-          'currency': 'INR'
+          'send_to': 'AW-18044724364/1jOqCPDor6IcEIzJspxD' // <-- Call Label Active
+      });
+    }
+  };
+
+  // --- GOOGLE ADS: WHATSAPP CLICK TRACKING ---
+  const handleWhatsAppClick = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag('event', 'conversion', {
+          'send_to': 'AW-18044724364/XgEVCKunsqIcEIzJspxD' // <-- WhatsApp Label Active
       });
     }
   };
@@ -63,7 +68,7 @@ export default function DoorstepRepair() {
       <div className="md:hidden fixed bottom-0 left-0 w-full z-50 p-3 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.1)] flex gap-2">
         <a 
           href={`tel:${PHONE_NUMBER}`} 
-          onClick={() => handleLeadClick('Phone_Call_Mobile')}
+          onClick={handleCallClick} // Active
           className="flex-2 bg-blue-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 animate-bounce-slight"
         >
           <PhoneCall size={22} className="animate-pulse" />
@@ -71,7 +76,7 @@ export default function DoorstepRepair() {
         </a>
         <a 
           href={WHATSAPP_URL} 
-          onClick={() => handleLeadClick('WhatsApp_Chat_Mobile')}
+          onClick={handleWhatsAppClick} // Active
           target="_blank" 
           rel="noopener noreferrer"
           className="flex-1 bg-[#25D366] text-white font-bold py-3.5 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30"
@@ -109,7 +114,7 @@ export default function DoorstepRepair() {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <a 
                 href={`tel:${PHONE_NUMBER}`}
-                onClick={() => handleLeadClick('Phone_Call_Desktop')}
+                onClick={handleCallClick} // Active
                 className="inline-flex justify-center items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold rounded-xl shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-1"
               >
                 <PhoneCall size={24} />
@@ -117,7 +122,7 @@ export default function DoorstepRepair() {
               </a>
               <a 
                 href={WHATSAPP_URL}
-                onClick={() => handleLeadClick('WhatsApp_Chat_Desktop')}
+                onClick={handleWhatsAppClick} // Active
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-[#25D366] hover:bg-[#20b858] text-white text-lg font-bold rounded-xl shadow-xl shadow-green-500/20 transition-all hover:-translate-y-1"

@@ -3,73 +3,52 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
 
 export default function ThankYouPage() {
-  
-  useEffect(() => {
-    // Google Ads Conversion Tracking Snippet (Optional but Recommended)
-    // Jab aap Google Ads account mein conversion banayenge, toh ek "send_to" label milega.
-    // Aap use yahan add kar sakte hain taaki perfect tracking ho.
-    
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'conversion', {
-        'send_to': 'AW-18044724364/REPLACE_WITH_YOUR_CONVERSION_LABEL'
-      });
-    }
-  }, []);
-
   return (
     <div className="min-h-[80vh] bg-background text-text-main flex items-center justify-center relative overflow-hidden px-4 selection:bg-secondary/10 selection:text-secondary">
       
-      {/* Soft Success Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[120px] pointer-events-none z-0"></div>
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-secondary/5 blur-[120px]" />
+        <div className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px]" />
+      </div>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="max-w-2xl w-full bg-primary border border-secondary/10 p-10 md:p-16 rounded-3xl shadow-premium text-center relative z-10"
+        transition={{ duration: 0.5 }}
+        className="relative z-10 max-w-2xl w-full bg-white/80 backdrop-blur-xl border border-gray-200/50 p-8 md:p-12 rounded-3xl shadow-2xl text-center"
       >
-        
-        {/* Success Checkmark Icon */}
-        <div className="w-24 h-24 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-8 border border-green-500/20 shadow-sm">
-          <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", delay: 0.2, stiffness: 200 }}
+          className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner"
+        >
+          <svg className="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
           </svg>
-        </div>
+        </motion.div>
 
-        <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-text-main mb-4">
-          Request <span className="text-secondary">Received</span>
+        <h1 className="text-4xl md:text-5xl font-black mb-6 tracking-tight text-gray-900">
+          Request <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-blue-800">Received!</span>
         </h1>
         
-        <p className="text-text-main/70 text-base md:text-lg font-medium leading-relaxed mb-8">
-          Thank you for trusting LPCARE.TECH. Your hardware diagnostic request has been successfully registered in our secure system. One of our lab experts will review your device details and call you shortly to confirm the next steps.
+        <p className="text-lg md:text-xl text-gray-600 mb-8 font-medium leading-relaxed">
+          Thank you for choosing LPCare. Our expert technician will contact you within the next <strong className="text-gray-900">5-10 minutes</strong> to confirm your requirement.
         </p>
 
-        <div className="bg-background border border-secondary/10 p-6 rounded-xl mb-10 text-left">
-          <h3 className="text-[11px] font-black text-secondary uppercase tracking-widest mb-2">Drop-off Location Details</h3>
-          <p className="text-sm font-medium text-text-main/80 leading-relaxed">
-            Shop LPCARE.TECH<br />
-            Noida Sector-168 Chhapraoli<br />
-            Near SK Homes, UP, Pincode 201305
-          </p>
-          <div className="mt-4 pt-4 border-t border-secondary/10">
-            <p className="text-xs text-text-main/60 font-bold uppercase tracking-widest">
-              Direct Lab Contact: <a href="tel:+918557065447" className="text-secondary hover:underline">+91 8557065447</a>
-            </p>
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/" className="w-full sm:w-auto bg-secondary text-primary hover:bg-black font-bold py-4 px-10 rounded-full tracking-[0.15em] uppercase text-xs transition-all duration-300 shadow-sm">
-            Return to Homepage
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+          <Link href="/" className="px-8 py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition-all shadow-lg hover:shadow-xl w-full sm:w-auto flex items-center justify-center gap-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Back to Home
           </Link>
-          <Link href="/services" className="w-full sm:w-auto bg-transparent border border-secondary/20 text-text-main hover:border-secondary font-bold py-4 px-10 rounded-full tracking-[0.15em] uppercase text-xs transition-all duration-300">
-            Explore Services
-          </Link>
+          <a href="tel:+918742981501" className="px-8 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-xl font-bold hover:border-gray-900 hover:bg-gray-50 transition-all w-full sm:w-auto flex items-center justify-center gap-2">
+             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+             Call Us Now
+          </a>
         </div>
-
       </motion.div>
     </div>
   );

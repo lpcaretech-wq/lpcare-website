@@ -15,8 +15,8 @@ export default function GlobalError({ error, reset }) {
     <div className="min-h-[85vh] bg-background text-text-main flex items-center justify-center relative overflow-hidden px-6 selection:bg-secondary/10 selection:text-secondary">
       
       {/* Background Ambient Glows (Red tint for error) */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-red-500/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+      <div className="absolute top-1/4 left-1/4 w-100 h-100 bg-red-500/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-100 h-100 bg-secondary/5 rounded-full blur-[100px] pointer-events-none z-0"></div>
 
       <div className="max-w-3xl w-full relative z-10 text-center">
         
@@ -28,7 +28,7 @@ export default function GlobalError({ error, reset }) {
           className="mb-8 flex justify-center"
         >
           <div className="w-24 h-24 bg-red-500/10 text-red-500 rounded-2xl flex items-center justify-center border border-red-500/20 shadow-sm relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-[2px] bg-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.8)] animate-[scan_2s_ease-in-out_infinite]"></div>
+             <div className="absolute top-0 left-0 w-full h-0.5 bg-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.8)] animate-[scan_2s_ease-in-out_infinite]"></div>
              <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
              </svg>
